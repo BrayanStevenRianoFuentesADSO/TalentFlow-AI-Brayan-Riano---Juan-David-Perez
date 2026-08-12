@@ -1,0 +1,1033 @@
+
+
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "postulacion",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -48,
+        32
+      ],
+      "id": "925fd6a2-9818-454c-85b7-48c126d578f9",
+      "name": "Webhook",
+      "webhookId": "224ba5cd-558c-41ee-ac46-c065cf372214"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "313b000d-ec0a-4be8-8e79-c00fa2618a5c",
+              "name": "recomendacion",
+              "value": "revision prioritaria",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2016,
+        -224
+      ],
+      "id": "90f112fa-ca85-42c4-8f6b-b2c2e31f91ea",
+      "name": "revision prioritaria"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3a7d2451-17fa-4ffd-a9bd-560bd5e2598a",
+              "leftValue": "={{ $json.body.nombre }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "af722b29-28bc-4ebf-a714-6e1131cdeda3",
+              "leftValue": "={{ $json.body.correo }}",
+              "rightValue": "={{ $json.body.correo }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "4c085b7d-5140-4cfc-a57b-baebb2aa1a6c",
+              "leftValue": "={{ $json.body.telefono }}",
+              "rightValue": "={{ $json.body.telefono }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "9b4e0341-1a3a-4c0d-baab-dda191f01c28",
+              "leftValue": "={{ $json.body.vacante }}",
+              "rightValue": "={{ $json.body.vacante }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "bdc01d14-01e0-4e47-8b25-a1077986a3cf",
+              "leftValue": "={{ $json.body.experiencia }}",
+              "rightValue": "={{ $json.body.experiencia }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "8cc19292-64e7-4958-abc8-4bc81c1c5125",
+              "leftValue": "={{ $json.body.habilidades }}",
+              "rightValue": "={{ $json.body.habilidades }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "5b94c927-e8dd-4b4f-b4e8-019e303469c1",
+              "leftValue": "={{ $json.body.tratamiento_datos }}",
+              "rightValue": "={{ $json.body.tratamiento_datos }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        224,
+        64
+      ],
+      "id": "12ec1d80-c036-444a-ba30-4aec1a0e38a7",
+      "name": "llegaron los datos?"
+    },
+    {
+      "parameters": {
+        "errorMessage": "se presento un error por favor vuelva a intentarlo "
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        448,
+        160
+      ],
+      "id": "60881a55-ac52-430c-8a4d-e8c880f8cd68",
+      "name": "error no llegaron los datos"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "Hojavida",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        448,
+        -32
+      ],
+      "id": "1d34c290-e6e0-4435-8019-8ba1c81fb0a1",
+      "name": "extraer documento PDF"
+    },
+    {
+      "parameters": {
+        "resource": "document",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.5-flash"
+        },
+        "text": "=Analiza el siguiente curriculum vitae.\n\nExtrae UNICAMENTE información que aparezca explícitamente en el CV.\nNo inventes información.\nSi una categoría no aparece, devuelve un arreglo vacío [].\n\nIdentifica:\n\n- datos_personales\n- perfil\n- formaciones\n- experiencias\n- habilidades\n- competencias\n- idiomas\n\nDevuelve UNICAMENTE un objeto JSON válido.\n\nNo utilices Markdown.\nNo escribas ```json.\nNo agregues explicaciones antes o después del JSON.\n\nLa estructura debe ser:\n\n{\n  \"datos_personales\": {},\n  \"perfil\": \"\",\n  \"formaciones\": [],\n  \"experiencias\": [],\n  \"habilidades\": [],\n  \"competencias\": [],\n  \"idiomas\": []\n}\n\nAdemás, genera una observación breve del candidato basada UNICAMENTE\nen la información encontrada en el CV.\n\nLa observación debe resumir:\n- principales conocimientos o habilidades técnicas\n- formación relevante\n- experiencia relevante\n- fortalezas o competencias destacables\n\nNo inventes información.\nNo menciones requisitos de una vacante que no aparezcan en el CV.\nNo hagas suposiciones.\n\nDevuelve la observación en el campo:\n\n\"observacion_IA\": \"\"\n\nCV:\n\n{{ $json.text }}",
+        "inputType": "binary",
+        "binaryPropertyName": "",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        672,
+        -32
+      ],
+      "id": "c1994f28-ad75-462b-972e-0027b128a26d",
+      "name": "analizando del documento",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "OKPAxwR5gHxZ5pYa",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const texto = $input.first().json.content.parts[0].text;\n\nconst datos = JSON.parse(texto);\n\nconst vacante = $('Webhook').first().json.body.vacante;\n\nconst experiencia = $('Webhook').first().json.body.experiencia;\n\nconst formaciones = datos.formaciones || [];\n\nconst niveles = [\n  { palabras: ['doctorado'], prioridad: 6 },\n  { palabras: ['maestría', 'maestria', 'master'], prioridad: 5 },\n  { palabras: ['universitario', 'universidad', 'pregrado', 'licenciatura'], prioridad: 4 },\n  { palabras: ['tecnología', 'tecnologia', 'tecnólogo', 'tecnologo'], prioridad: 3 },\n  { palabras: ['técnico', 'tecnico'], prioridad: 2 },\n  { palabras: ['bachillerato', 'bachiller'], prioridad: 1 }\n];\n\nlet nivelEducativo = 'No especificado';\nlet prioridadMayor = 0;\n\nfor (const formacion of formaciones) {\n\n  const textoFormacion = String(\n    formacion.titulo || ''\n  ).toLowerCase();\n\n  for (const nivel of niveles) {\n\n    const encontrado = nivel.palabras.some(palabra =>\n      textoFormacion.includes(palabra)\n    );\n\n    if (\n      encontrado &&\n      nivel.prioridad > prioridadMayor\n    ) {\n      nivelEducativo = formacion.titulo;\n      prioridadMayor = nivel.prioridad;\n    }\n  }\n}\n\nconst idCandidato =\n  'TF-' +\n  $now.toFormat('yyyyMMddHHmmss') +\n  '-' +\n  Math.floor(Math.random() * 10000);\n\n\nreturn [\n  {\n    json: {\n      ID_candidato:idCandidato,\n      ...datos,\n      nivel_Educativo:nivelEducativo,\n      vacante: vacante,\n      experiencia: experiencia\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        -32
+      ],
+      "id": "5f7b1d14-5756-4cee-87ea-9d5432ddae9e",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Webhook').item.json.body.vacante }}",
+                    "rightValue": "Backend junior",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "4c27b86a-d52e-4feb-886c-b549e99ee006"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Backend junior"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "585719f9-8685-4b12-af2b-60ed9ffbc114",
+                    "leftValue": "={{ $('Webhook').item.json.body.vacante }}",
+                    "rightValue": "Data analyst",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Data analyst"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "e8fde5ef-1b23-4dea-b9a6-67db3a2f930b",
+                    "leftValue": "={{ $('Webhook').item.json.body.vacante }}",
+                    "rightValue": "Frontend junior",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Frontend junior"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1120,
+        -48
+      ],
+      "id": "f77b36e2-9c07-4465-abf0-a2c78f60da9a",
+      "name": "tipo de vacante"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4e92fb39-530b-40c9-9e0e-5fa2c5d0f6b3",
+              "name": "vacante_ref",
+              "value": "={{ $json.vacante }}",
+              "type": "string"
+            },
+            {
+              "id": "fa3e2a8f-0f95-4f7e-ab15-c5c0cf02b673",
+              "name": "req_habilidades",
+              "value": "[\"Java\", \"Spring Boot\", \"SQL\", \"Git\", \"Rest Api\"]",
+              "type": "array"
+            },
+            {
+              "id": "ba4f6554-ac63-4335-8191-253f89c8431a",
+              "name": "exp_minima",
+              "value": 1,
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1344,
+        -320
+      ],
+      "id": "a6134444-08c9-455a-8592-dd61c0c03ad0",
+      "name": "requisitos para backend"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3d5665f3-e08d-4bd2-809d-51d2a500823e",
+              "name": "vacante_ref",
+              "value": "={{ $json.vacante }}",
+              "type": "string"
+            },
+            {
+              "id": "9c73e0f6-c661-43e0-9b22-13c80ae74374",
+              "name": "req_habilidades",
+              "value": "[\"Python\", \"SQL\", \"Excel\", \"Power BI\"]",
+              "type": "array"
+            },
+            {
+              "id": "96cf8966-9581-46ec-8436-624e18ff2f7d",
+              "name": "exp_minima",
+              "value": 1,
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1344,
+        -128
+      ],
+      "id": "c36c1cd2-4f70-46d4-b46f-2fc2761ec732",
+      "name": "requisitos para data analys"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "efa6da0c-65fc-4a02-a663-f2d75e29fadb",
+              "name": "vacante_ref",
+              "value": "={{ $json.vacante }}",
+              "type": "string"
+            },
+            {
+              "id": "73bad507-69df-4952-bb89-67b92506261b",
+              "name": "req_habilidades",
+              "value": "[\"HTML\", \"Css\", \"JavaScript\", \"Git\", \"Responsive Design\"]",
+              "type": "array"
+            },
+            {
+              "id": "77318111-be48-4c0d-adb1-cf1cd43e9b43",
+              "name": "exp_minima",
+              "value": 1,
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1344,
+        64
+      ],
+      "id": "85a09eb1-e471-4205-9a71-47ede568dbce",
+      "name": "requisitos para frontend"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first().json;\n\n// Datos del candidato\nconst habilidades = item.habilidades || [];\nconst experiencia = Number(item.experiencia || 0);\n\n// Requisitos de la vacante\nconst requisitos = item.req_habilidades || [];\nconst expMinima = Number(item.exp_minima || 0);\n\n// Normalizamos los textos para comparar sin importar mayúsculas/minúsculas\nconst habilidadesNormalizadas = habilidades.map(h =>\n  String(h).trim().toLowerCase()\n);\n\nconst requisitosNormalizados = requisitos.map(h =>\n  String(h).trim().toLowerCase()\n);\n\n// Buscamos coincidencias\nconst habilidadesCoincidentes = requisitosNormalizados.filter(req =>\n  habilidadesNormalizadas.includes(req)\n);\n\n// Calculamos porcentaje de habilidades\nlet porcentajeHabilidades = 0;\n\nif (requisitosNormalizados.length > 0) {\n  porcentajeHabilidades =\n    habilidadesCoincidentes.length / requisitosNormalizados.length;\n}\n\n// Habilidades = 70 puntos\nconst puntosHabilidades = porcentajeHabilidades * 70;\n\n// Experiencia = 30 puntos\nconst puntosExperiencia = experiencia >= expMinima ? 30 : 0;\n\n// Score final\nconst score = Math.round(puntosHabilidades + puntosExperiencia);\n\n// Clasificación\nlet clasificacion;\n\nif (score >= 80) {\n  clasificacion = \"Alta\";\n} else if (score >= 60) {\n  clasificacion = \"Media\";\n} else {\n  clasificacion = \"Baja\";\n}\n\nreturn [\n  {\n    json: {\n      ...item,\n\n      habilidades_coincidentes: habilidadesCoincidentes,\n      total_requisitos: requisitosNormalizados.length,\n      requisitos_cumplidos: habilidadesCoincidentes.length,\n\n      puntos_habilidades: Math.round(puntosHabilidades),\n      puntos_experiencia: puntosExperiencia,\n\n      score: score,\n      clasificacion: clasificacion\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1568,
+        -128
+      ],
+      "id": "21b81eb5-e633-49d5-8ecf-047c680e581e",
+      "name": "comparar score"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.clasificacion }}",
+                    "rightValue": "Alta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "8f246279-f2c7-451d-aefa-3f758416566a"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Alta"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "6867e6c6-5190-455d-a231-5212f566ae5c",
+                    "leftValue": "={{ $json.clasificacion }}",
+                    "rightValue": "Media",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Media"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "be07c32c-4d18-4af9-812e-fee95170d76e",
+                    "leftValue": "={{ $json.clasificacion }}",
+                    "rightValue": "Baja",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Baja"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1792,
+        -144
+      ],
+      "id": "4fde1cfb-d1ab-4cf3-a036-dc4a2ee20eb1",
+      "name": "tomar desicion de clasificacion"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9e9fd3bc-7c08-4d85-aa79-25f59d529811",
+              "name": "recomendacion",
+              "value": "revision manual",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2016,
+        -32
+      ],
+      "id": "0eb7b988-ba74-4103-ac6c-64dd5cf3ccae",
+      "name": "revision manual"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "827a9205-d71a-4223-9913-79bfcb44b854",
+              "name": "recomendacion",
+              "value": "revision secundaria",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2016,
+        160
+      ],
+      "id": "05895fcd-16c5-46c6-8699-7e3ef5c199ed",
+      "name": "revision secundaria"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4feadeaf-81f9-4b4d-bbed-2a95ed95268f",
+              "name": "ID_candidato",
+              "value": "= {{ $json.ID_candidato }}",
+              "type": "string"
+            },
+            {
+              "id": "7573d1b2-4aca-4f3e-a61c-e5ab3472a916",
+              "name": "Nombre",
+              "value": "={{ $('Webhook').item.json.body.nombre.trim().toLowerCase().replace(/\\b\\w/g, c => c.toUpperCase()) }}",
+              "type": "string"
+            },
+            {
+              "id": "000a5e19-aba0-4266-a059-c421c4c52b6a",
+              "name": "Correo",
+              "value": "={{ $('Webhook').item.json.body.correo.trim().toLowerCase()}}",
+              "type": "string"
+            },
+            {
+              "id": "8ec252b3-8ce4-47c1-9907-9e1107437192",
+              "name": "Telefono",
+              "value": "={{ $('Webhook').item.json.body.telefono.trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "4ae0444f-4cad-411a-bfc3-2129017717b6",
+              "name": "Vacante",
+              "value": "={{ $('Webhook').item.json.body.vacante.trim()}}",
+              "type": "string"
+            },
+            {
+              "id": "e06217b0-d60c-4701-8cac-42d3d7aa1f13",
+              "name": "Experiencia",
+              "value": "={{ $('Webhook').item.json.body.experiencia }}",
+              "type": "string"
+            },
+            {
+              "id": "b8eaee4f-04cb-4dce-8913-cc7445007e8c",
+              "name": "Habilidades",
+              "value": "={{ ($json.habilidades || []).map(h => h.trim().replace(/\\b\\w/g, c => c.toUpperCase())).join(', ') }}",
+              "type": "string"
+            },
+            {
+              "id": "0a6a7b65-5aa7-44b3-8a76-de0014426cb4",
+              "name": "Nivel_academico",
+              "value": "={{ $json.nivel_Educativo }}",
+              "type": "string"
+            },
+            {
+              "id": "a51b0218-c6aa-4748-8880-6811e775468e",
+              "name": "Score_compatibilidad",
+              "value": "={{ $json.score }}",
+              "type": "number"
+            },
+            {
+              "id": "1a4a9722-bb69-4b1f-9754-1b54e86c2d24",
+              "name": "Estado",
+              "value": "=Analizado",
+              "type": "string"
+            },
+            {
+              "id": "ae4dce5e-7508-4845-99d5-ba33991c0eca",
+              "name": "Fecha_Postulacion",
+              "value": "={{ $now.format('yyyy-MM-dd (HH:mm)') }}",
+              "type": "string"
+            },
+            {
+              "id": "bea0140c-dba3-4e4d-bd94-e9820c75e2d5",
+              "name": "Observaciones_IA",
+              "value": "={{ $json.observacion_IA }}",
+              "type": "string"
+            },
+            {
+              "id": "6db541c6-eda0-4629-8afa-72fda5ef657c",
+              "name": "Revision_RRHH",
+              "value": "={{ $json.recomendacion }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2576,
+        -96
+      ],
+      "id": "fe15537a-59e1-4fe4-81e5-10255b82f48e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA",
+          "mode": "list",
+          "cachedResultName": "proyecto n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_candidato": "={{ $json.ID_candidato }}",
+            "Nombre": "={{ $json.Nombre }}",
+            "Correo": "={{ $json.Correo }}",
+            "Telefono": "={{ $json.Telefono }}",
+            "Vacante": "={{ $json.Vacante }}",
+            "Experiencia": "={{ $json.Experiencia }}",
+            "Habilidades": "={{ $json.Habilidades }}",
+            "Nivel_academico": "={{ $json.Nivel_academico }}",
+            "Score_compatibilidad": "={{ $json.Score_compatibilidad }}",
+            "Estado": "={{ $json.Estado }}",
+            "Fecha_Postulacion": "={{ $json.Fecha_Postulacion }}",
+            "Observaciones_IA": "={{ $json.Observaciones_IA }}",
+            "Revision_RRHH": "={{ $json.Revision_RRHH }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_candidato",
+              "displayName": "ID_candidato",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Vacante",
+              "displayName": "Vacante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Experiencia",
+              "displayName": "Experiencia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Habilidades",
+              "displayName": "Habilidades",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nivel_academico",
+              "displayName": "Nivel_academico",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Score_compatibilidad",
+              "displayName": "Score_compatibilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha_Postulacion",
+              "displayName": "Fecha_Postulacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Observaciones_IA",
+              "displayName": "Observaciones_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Revision_RRHH",
+              "displayName": "Revision_RRHH",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2784,
+        -96
+      ],
+      "id": "7da5788f-0666-4934-b077-ebdecb38aaa5",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SXXUxiDk9MSwyKux",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "llegaron los datos?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "revision prioritaria": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "llegaron los datos?": {
+      "main": [
+        [
+          {
+            "node": "extraer documento PDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "error no llegaron los datos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "extraer documento PDF": {
+      "main": [
+        [
+          {
+            "node": "analizando del documento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "analizando del documento": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "tipo de vacante",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tipo de vacante": {
+      "main": [
+        [
+          {
+            "node": "requisitos para backend",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "requisitos para data analys",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "requisitos para frontend",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "requisitos para backend": {
+      "main": [
+        [
+          {
+            "node": "comparar score",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "requisitos para data analys": {
+      "main": [
+        [
+          {
+            "node": "comparar score",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "requisitos para frontend": {
+      "main": [
+        [
+          {
+            "node": "comparar score",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "comparar score": {
+      "main": [
+        [
+          {
+            "node": "tomar desicion de clasificacion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tomar desicion de clasificacion": {
+      "main": [
+        [
+          {
+            "node": "revision prioritaria",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "revision manual",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "revision secundaria",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "revision manual": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "revision secundaria": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d6bddb54bb2d33a0b901720b7140b04f001ec39342e5581150a4b607fff19b33"
+  }
+}
