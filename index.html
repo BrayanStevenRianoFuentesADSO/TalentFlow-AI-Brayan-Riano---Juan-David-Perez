@@ -15,7 +15,7 @@
     </header>
 
 
-    <form action="" class="form" id="formulario">
+    <form action="" class="form" id="formulario" enctype="multipart/form-data">
 
         <h2 class="form__titulo" id="formulario__titulo">
             Ingresa tus datos
@@ -59,7 +59,7 @@
 
         <div class="form__inputs">
 
-            <input type="text" id="telefono" name="telefono" class="form__input telefono">
+            <input type="tel" id="telefono" name="telefono" class="form__input telefono" required>
 
             <select name="vacante" id="vacante" class="form__input" required>
 
@@ -86,11 +86,11 @@
 
         <div class="form__labels">
 
-            <label for="anios" class="form__label">
+            <label for="experiencia" class="form__label">
                 Años de Experiencia
             </label>
 
-            <label for="tecnologias" class="form__label">
+            <label for="habilidades" class="form__label">
                 Tecnologias, herramientas o conocimientos principales
             </label>
 
@@ -99,20 +99,20 @@
 
         <div class="form__inputs">
 
-            <input type="text" id="anios" name="anios" class="form__input anios" required>
+            <input type="number" id="experiencia" name="experiencia" class="form__input experiencia" required>
 
-            <input type="text" id="tecnologias" name="tecnologias" class="form__input tecnologias" required>
+            <input type="text" id="habilidades" name="habilidades" class="form__input habilidades" required>
 
         </div>
 
 
         <div class="form__labels">
 
-            <label for="archivo" class="form__label">
+            <label for="Hojavida" class="form__label">
                 Hoja de Vida
             </label>
 
-            <label for="check" class="form__label">
+            <label for="tratamiento" class="form__label">
                 Aceptar el tratamiento de datos personales
             </label>
 
@@ -123,11 +123,13 @@
 
             <div class="hoja__vida">
 
-                <input type="file" id="archivo" name="archivo" class="archivo" accept=".pdf,.doc,.docx" required>
+                <input type="file" id="Hojavida" name="Hojavida" class="archivo" accept=".pdf,application/pdf" required>
 
             </div>
 
-            <input type="checkbox" id="check" name="check" class="form__check check" required>
+
+            <input type="checkbox" id="tratamiento" name="tratamiento_datos" value="aceptado" class="form__check check"
+                required>
 
         </div>
 
