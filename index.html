@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>TalentFlow IA</title>
+</head>
+
+<body>
+
+    <header class="header" id="header">
+        <h1 class="header__titulo" id="titulo">TalentFlow IA</h1>
+    </header>
+
+
+    <form action="" class="form" id="formulario">
+
+        <h2 class="form__titulo" id="formulario__titulo">
+            Ingresa tus datos
+        </h2>
+
+
+        <div class="form__labels">
+
+            <label for="nombre" class="form__label">
+                Nombre Completo
+            </label>
+
+            <label for="correo" class="form__label">
+                Correo Electrónico.
+            </label>
+
+        </div>
+
+
+        <div class="form__inputs">
+
+            <input type="text" id="nombre" name="nombre" class="form__input nombre" required>
+
+            <input type="email" id="correo" name="correo" class="form__input correo" required>
+
+        </div>
+
+
+        <div class="form__labels">
+
+            <label for="telefono" class="form__label">
+                Número Telefónico
+            </label>
+
+            <label for="vacante" class="form__label">
+                Vacante
+            </label>
+
+        </div>
+
+
+        <div class="form__inputs">
+
+            <input type="text" id="telefono" name="telefono" class="form__input telefono">
+
+            <select name="vacante" id="vacante" class="form__input" required>
+
+                <option value="">
+                    selecciona una vacante
+                </option>
+
+                <option value="Backend junior">
+                    Desarrollador backend junior
+                </option>
+
+                <option value="Frontend junior">
+                    Desarrollador frontend junior
+                </option>
+
+                <option value="Data analyst">
+                    Data analyst
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form__labels">
+
+            <label for="anios" class="form__label">
+                Años de Experiencia
+            </label>
+
+            <label for="tecnologias" class="form__label">
+                Tecnologias, herramientas o conocimientos principales
+            </label>
+
+        </div>
+
+
+        <div class="form__inputs">
+
+            <input type="text" id="anios" name="anios" class="form__input anios" required>
+
+            <input type="text" id="tecnologias" name="tecnologias" class="form__input tecnologias" required>
+
+        </div>
+
+
+        <div class="form__labels">
+
+            <label for="archivo" class="form__label">
+                Hoja de Vida
+            </label>
+
+            <label for="check" class="form__label">
+                Aceptar el tratamiento de datos personales
+            </label>
+
+        </div>
+
+
+        <div class="form__inputs">
+
+            <div class="hoja__vida">
+
+                <input type="file" id="archivo" name="archivo" class="archivo" accept=".pdf,.doc,.docx" required>
+
+            </div>
+
+            <input type="checkbox" id="check" name="check" class="form__check check" required>
+
+        </div>
+
+
+        <button type="submit" class="form__button" id="boton">
+            Enviar
+        </button>
+
+    </form>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
