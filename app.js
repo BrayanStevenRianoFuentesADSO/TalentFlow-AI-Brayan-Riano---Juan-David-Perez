@@ -4,7 +4,7 @@ formulario.addEventListener("submit", async (event) => {
 
     event.preventDefault();
 
-    const webhookURL = "https://unworldly-unbalance-nautical.ngrok-free.dev/webhook-test/postulacion";
+    const webhookURL = "https://unpiloted-scarce-elastic.ngrok-free.dev/webhook-test/postulacion";
 
     const formData = new FormData(formulario);
 
