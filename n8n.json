@@ -1,4 +1,5 @@
 {
+  "name": "My workflow",
   "nodes": [
     {
       "parameters": {
@@ -9,10 +10,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -48,
-        64
+        -1760,
+        320
       ],
-      "id": "925fd6a2-9818-454c-85b7-48c126d578f9",
+      "id": "d87c6b6c-3374-4933-a1cf-746977e01c22",
       "name": "Webhook",
       "webhookId": "224ba5cd-558c-41ee-ac46-c065cf372214"
     },
@@ -34,10 +35,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2400,
-        -224
+        688,
+        32
       ],
-      "id": "90f112fa-ca85-42c4-8f6b-b2c2e31f91ea",
+      "id": "de25ca5e-19d9-471e-8acc-643894804a12",
       "name": "revision prioritaria"
     },
     {
@@ -128,10 +129,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        176,
-        64
+        -1536,
+        320
       ],
-      "id": "12ec1d80-c036-444a-ba30-4aec1a0e38a7",
+      "id": "680e36fb-9a38-4263-9b00-26f53f373c43",
       "name": "llegaron los datos?"
     },
     {
@@ -141,10 +142,10 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        400,
-        160
+        -1312,
+        416
       ],
-      "id": "60881a55-ac52-430c-8a4d-e8c880f8cd68",
+      "id": "8eeef8d9-edba-443c-846f-24b4055f9b3d",
       "name": "error no llegaron los datos"
     },
     {
@@ -156,10 +157,10 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1.1,
       "position": [
-        624,
-        -32
+        -1088,
+        224
       ],
-      "id": "1d34c290-e6e0-4435-8019-8ba1c81fb0a1",
+      "id": "7406e90a-86b4-4140-b8c8-e9e438ddf391",
       "name": "extraer documento PDF"
     },
     {
@@ -179,14 +180,14 @@
       "type": "@n8n/n8n-nodes-langchain.googleGemini",
       "typeVersion": 1.2,
       "position": [
-        848,
-        -32
+        -864,
+        224
       ],
-      "id": "c1994f28-ad75-462b-972e-0027b128a26d",
+      "id": "b0ee6719-ca3e-40c6-898a-a48b89c28c9d",
       "name": "analizando del documento",
       "credentials": {
         "googlePalmApi": {
-          "id": "OKPAxwR5gHxZ5pYa",
+          "id": "FnmZAsiLG0IyhTra",
           "name": "Google Gemini(PaLM) Api account"
         }
       }
@@ -198,10 +199,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1280,
-        -32
+        -432,
+        224
       ],
-      "id": "5f7b1d14-5756-4cee-87ea-9d5432ddae9e",
+      "id": "a0caac64-89f0-4ce0-82f5-6205129c7f20",
       "name": "Code in JavaScript"
     },
     {
@@ -287,10 +288,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
       "position": [
-        1504,
-        -48
+        -208,
+        208
       ],
-      "id": "f77b36e2-9c07-4465-abf0-a2c78f60da9a",
+      "id": "0417440e-2ea8-48c2-99a3-7df72295eb44",
       "name": "tipo de vacante"
     },
     {
@@ -323,10 +324,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1728,
-        -320
+        16,
+        -64
       ],
-      "id": "a6134444-08c9-455a-8592-dd61c0c03ad0",
+      "id": "839f5ec9-5474-408a-b959-09237168cddd",
       "name": "requisitos para backend"
     },
     {
@@ -359,10 +360,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1728,
-        -128
+        16,
+        128
       ],
-      "id": "c36c1cd2-4f70-46d4-b46f-2fc2761ec732",
+      "id": "bb891ef6-d4f7-4360-9703-bd32b41eb495",
       "name": "requisitos para data analys"
     },
     {
@@ -395,10 +396,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1728,
-        64
+        16,
+        320
       ],
-      "id": "85a09eb1-e471-4205-9a71-47ede568dbce",
+      "id": "020ad297-bdf3-4117-82df-692fdbb9b2b3",
       "name": "requisitos para frontend"
     },
     {
@@ -408,10 +409,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1952,
-        -128
+        240,
+        128
       ],
-      "id": "21b81eb5-e633-49d5-8ecf-047c680e581e",
+      "id": "1518fed8-2074-4335-9533-0f4c34b4956d",
       "name": "comparar score"
     },
     {
@@ -497,10 +498,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
       "position": [
-        2176,
-        -144
+        464,
+        112
       ],
-      "id": "4fde1cfb-d1ab-4cf3-a036-dc4a2ee20eb1",
+      "id": "e5e2dcf6-0bf2-4229-9a01-8ae3f94727f6",
       "name": "tomar desicion de clasificacion"
     },
     {
@@ -521,10 +522,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2400,
-        -32
+        688,
+        224
       ],
-      "id": "0eb7b988-ba74-4103-ac6c-64dd5cf3ccae",
+      "id": "164936ff-9786-4cdf-9647-9f8fab5762e2",
       "name": "revision manual"
     },
     {
@@ -545,10 +546,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2400,
-        160
+        688,
+        416
       ],
-      "id": "05895fcd-16c5-46c6-8699-7e3ef5c199ed",
+      "id": "f802b6a8-5b84-4c3d-9d98-76dab55d3c77",
       "name": "revision secundaria"
     },
     {
@@ -640,10 +641,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2624,
-        -128
+        912,
+        128
       ],
-      "id": "fe15537a-59e1-4fe4-81e5-10255b82f48e",
+      "id": "c509caf0-1a7b-41ee-88ab-58cf5d1ef4d7",
       "name": "Edit Fields"
     },
     {
@@ -808,14 +809,14 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        2848,
-        -128
+        1136,
+        128
       ],
-      "id": "7da5788f-0666-4934-b077-ebdecb38aaa5",
+      "id": "3f25b50d-d627-400c-90b5-4a401baa6109",
       "name": "Append row in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "SXXUxiDk9MSwyKux",
+          "id": "wNlbyBvBZ0IoYqta",
           "name": "Google Sheets account"
         }
       }
@@ -848,10 +849,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        400,
-        -32
+        -1312,
+        224
       ],
-      "id": "b79c7afa-8cfb-4732-ba1d-4913293827a8",
+      "id": "e8a79665-d914-493e-a810-ae2a2d795b8f",
       "name": "es pdf?"
     },
     {
@@ -861,10 +862,10 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        608,
-        160
+        -1104,
+        416
       ],
-      "id": "28cee7f5-5a89-49bc-9884-f8b3e35fb52e",
+      "id": "fed9cca9-a305-4464-829b-8534b56401c1",
       "name": "Stop and Error"
     },
     {
@@ -894,10 +895,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        1056,
-        -32
+        -656,
+        224
       ],
-      "id": "f8b281ea-8970-4673-be4f-f6419b139417",
+      "id": "4e6c440b-5064-492a-8663-2a3e387cf714",
       "name": "If"
     },
     {
@@ -907,13 +908,37 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        1312,
+        -400,
+        368
+      ],
+      "id": "34b40679-9f06-4afc-a774-a2880f790e13",
+      "name": "Stop and Error1"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Correo }}",
+        "subject": "Postulacion Aprobada",
+        "message": "=<div style=\"margin:0; padding:0; background-color:#f4f7fb; font-family:Arial, Helvetica, sans-serif; color:#1f2937;\">\n\n  <!-- Contenedor principal -->\n  <div style=\"max-width:650px; margin:0 auto; padding:40px 20px;\">\n\n    <!-- Header -->\n    <div style=\"background-color:#172554; border-radius:14px 14px 0 0; padding:28px 35px; text-align:center;\">\n\n      <div style=\"font-size:28px; font-weight:bold; color:#ffffff; letter-spacing:0.5px;\">\n        Talent<span style=\"color:#38bdf8;\">Flow</span>\n      </div>\n\n      <div style=\"margin-top:8px; font-size:13px; color:#bfdbfe; letter-spacing:1px;\">\n        GESTIÓN DE TALENTO\n      </div>\n\n    </div>\n\n    <!-- Contenido -->\n    <div style=\"background-color:#ffffff; padding:40px 35px; border-radius:0 0 14px 14px; box-shadow:0 5px 20px rgba(15, 23, 42, 0.08);\">\n\n      <!-- Saludo -->\n      <p style=\"font-size:16px; margin:0 0 20px 0; color:#374151;\">\n        Hola <strong style=\"color:#172554;\">{{ $json.Nombre }}</strong>,\n      </p>\n\n      <h1 style=\"font-size:24px; color:#172554; margin:0 0 18px 0;\">\n        ¡Tu postulación ha sido registrada!\n      </h1>\n\n      <p style=\"font-size:15px; line-height:1.7; color:#4b5563; margin:0 0 25px 0;\">\n        Te informamos que hemos recibido correctamente tu postulación.\n        A continuación encontrarás los detalles asociados a tu proceso:\n      </p>\n\n      <!-- Tarjeta de información -->\n      <div style=\"border:1px solid #e5e7eb; border-radius:10px; overflow:hidden; margin-bottom:28px;\">\n\n        <!-- Título -->\n        <div style=\"background-color:#f8fafc; padding:16px 20px; border-bottom:1px solid #e5e7eb;\">\n          <span style=\"font-size:14px; font-weight:bold; color:#172554;\">\n            DETALLES DE LA POSTULACIÓN\n          </span>\n        </div>\n\n        <!-- Vacante -->\n        <div style=\"padding:18px 20px; border-bottom:1px solid #f1f5f9;\">\n\n          <div style=\"font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;\">\n            Vacante\n          </div>\n\n          <div style=\"font-size:17px; font-weight:bold; color:#172554;\">\n            {{ $json.Vacante }}\n          </div>\n\n        </div>\n\n        <!-- Fecha -->\n        <div style=\"padding:18px 20px; border-bottom:1px solid #f1f5f9;\">\n\n          <div style=\"font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;\">\n            Fecha de postulación\n          </div>\n\n          <div style=\"font-size:15px; color:#374151;\">\n            {{ $json.Fecha_Postulacion }}\n          </div>\n\n        </div>\n\n        <!-- Estado -->\n        <div style=\"padding:18px 20px;\">\n\n          <div style=\"font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;\">\n            Estado actual\n          </div>\n\n          <span style=\"display:inline-block; background-color:#e0f2fe; color:#0369a1; padding:7px 14px; border-radius:20px; font-size:13px; font-weight:bold;\">\n            {{ $json.Estado }}\n          </span>\n\n        </div>\n\n      </div>\n\n      <!-- Mensaje -->\n      <div style=\"background-color:#f8fafc; border-left:4px solid #38bdf8; padding:18px 20px; margin-bottom:28px; border-radius:0 6px 6px 0;\">\n\n        <p style=\"font-size:14px; line-height:1.7; color:#4b5563; margin:0;\">\n          Tu información ha sido registrada en nuestro sistema y será\n          evaluada de acuerdo con los criterios establecidos para la\n          vacante seleccionada.\n        </p>\n\n      </div>\n\n      <p style=\"font-size:15px; line-height:1.7; color:#4b5563; margin:0 0 10px 0;\">\n        Te recomendamos estar atento a tu correo electrónico para recibir\n        cualquier actualización relacionada con tu proceso de selección.\n      </p>\n\n      <p style=\"font-size:15px; color:#374151; margin:25px 0 0 0;\">\n        Gracias por confiar en <strong style=\"color:#172554;\">Talent<span style=\"color:#38a9df;\">Flow</span></strong>.\n      </p>\n\n      <!-- Separador -->\n      <div style=\"height:1px; background-color:#e5e7eb; margin:35px 0 20px 0;\"></div>\n\n      <!-- Footer -->\n      <div style=\"text-align:center;\">\n\n        <div style=\"font-size:18px; font-weight:bold; color:#172554;\">\n          Talent<span style=\"color:#38a9df;\">Flow</span>\n        </div>\n\n        <p style=\"font-size:12px; color:#9ca3af; line-height:1.5; margin:8px 0 0 0;\">\n          Plataforma de gestión y selección de talento\n        </p>\n\n        <p style=\"font-size:11px; color:#b0b7c3; margin:15px 0 0 0;\">\n          Este correo fue generado automáticamente.\n          Por favor, no respondas directamente a este mensaje.\n        </p>\n\n      </div>\n\n    </div>\n\n  </div>\n\n</div>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1424,
         112
       ],
-      "id": "a6add9cf-43be-4542-910a-974bc99f6309",
-      "name": "Stop and Error1"
+      "id": "072863c8-44b9-401e-83a0-b47ed9a6cfb9",
+      "name": "Send a message",
+      "webhookId": "f80995e7-4952-4908-bf98-5a0153d916e5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "QHf829IUyGEf4UXL",
+          "name": "Gmail account"
+        }
+      }
     }
   ],
+  "pinData": {},
   "connections": {
     "Webhook": {
       "main": [
@@ -1150,11 +1175,30 @@
           }
         ]
       ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "pinData": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "74c9496e-3255-4976-bc50-c5befd6e71a6",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "d6bddb54bb2d33a0b901720b7140b04f001ec39342e5581150a4b607fff19b33"
-  }
+    "instanceId": "a05a0e5201cc1de02fff6edf3c582719ceee44a5a534126307cdf5429bda8bd0"
+  },
+  "nodeGroups": [],
+  "id": "8kEBwDBLUXWcaCy1",
+  "tags": []
 }
