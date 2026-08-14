@@ -1,0 +1,136 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "path": "dashboard/candidatos",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        528,
+        -64
+      ],
+      "id": "535301f0-ea1d-47e2-b2e0-bbb01e6901cc",
+      "name": "Webhook",
+      "webhookId": "6667caba-2ab1-4dee-a857-7f978e3800ef"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA",
+          "mode": "list",
+          "cachedResultName": "proyecto n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        752,
+        -64
+      ],
+      "id": "ffe27fcc-0bf8-4c31-be17-d3dd7f7dc9e9",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SXXUxiDk9MSwyKux",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const candidatos = $input.all().map(item => item.json);\n\nreturn [\n  {\n    json: {\n      candidatos: candidatos\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        976,
+        -64
+      ],
+      "id": "b0b9553e-6e2a-493b-b2d4-105f17b47ddd",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              },
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1200,
+        -64
+      ],
+      "id": "fd15caa6-7c95-44a3-9137-a9a148a8c892",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d6bddb54bb2d33a0b901720b7140b04f001ec39342e5581150a4b607fff19b33"
+  }
+}
