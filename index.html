@@ -1,26 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="style.css">
+
     <title>TalentFlow IA</title>
 </head>
 
 <body>
 
     <header class="header" id="header">
-        <h1 class="header__titulo" id="titulo">TalentFlow IA</h1>
+
+        <h1 class="header__titulo">
+            TalentFlow IA
+        </h1>
+
     </header>
 
 
     <form action="" class="form" id="formulario" enctype="multipart/form-data">
 
-        <h2 class="form__titulo" id="formulario__titulo">
+        <h2 class="form__titulo">
             Ingresa tus datos
         </h2>
 
+
+        <!-- NOMBRE Y CORREO -->
 
         <div class="form__labels">
 
@@ -29,7 +37,7 @@
             </label>
 
             <label for="correo" class="form__label">
-                Correo Electrónico.
+                Correo Electrónico
             </label>
 
         </div>
@@ -43,6 +51,8 @@
 
         </div>
 
+
+        <!-- TELEFONO Y VACANTE -->
 
         <div class="form__labels">
 
@@ -61,28 +71,19 @@
 
             <input type="tel" id="telefono" name="telefono" class="form__input telefono" required>
 
+
             <select name="vacante" id="vacante" class="form__input" required>
 
-                <option value="">
-                    selecciona una vacante
-                </option>
-
-                <option value="Backend junior">
-                    Desarrollador backend junior
-                </option>
-
-                <option value="Frontend junior">
-                    Desarrollador frontend junior
-                </option>
-
-                <option value="Data analyst">
-                    Data analyst
+                <option value="" selected disabled>
+                    Selecciona una vacante
                 </option>
 
             </select>
 
         </div>
 
+
+        <!-- EXPERIENCIA Y HABILIDADES -->
 
         <div class="form__labels">
 
@@ -91,7 +92,7 @@
             </label>
 
             <label for="habilidades" class="form__label">
-                Tecnologias, herramientas o conocimientos principales
+                Tecnologías, herramientas o conocimientos principales
             </label>
 
         </div>
@@ -99,12 +100,15 @@
 
         <div class="form__inputs">
 
-            <input type="number" id="experiencia" name="experiencia" class="form__input experiencia" required>
+            <input type="number" id="experiencia" name="experiencia" class="form__input experiencia" min="0" required>
+
 
             <input type="text" id="habilidades" name="habilidades" class="form__input habilidades" required>
 
         </div>
 
+
+        <!-- HOJA DE VIDA Y TRATAMIENTO -->
 
         <div class="form__labels">
 

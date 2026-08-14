@@ -1,0 +1,125 @@
+{
+  "name": "obtener vacantes",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "64347581-c5ed-45d6-9151-309c7b04ace6",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "http://127.0.0.1:5500"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0b91318b-288c-42fc-8bc0-253052387f53",
+      "name": "Webhook",
+      "webhookId": "64347581-c5ed-45d6-9151-309c7b04ace6"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        0
+      ],
+      "id": "5973d73f-883d-485f-aaaa-0e4cea8ff0ab",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "5zPB7gRQ3GsqK9Fa",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $input.all().map(item => item.json.titulo).join('\\n') }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "http://127.0.0.1:5500"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "GET, OPTIONS"
+              },
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "Content-Type"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        432,
+        0
+      ],
+      "id": "cbbf4168-3056-4f15-894d-ace9c51148b2",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "277a2fcd-b2dd-4593-91b9-028df8b98289",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7675791236c7f7435c21a5a4470bf129b3725ab9ed8ed5322646c8a1e020bb18"
+  },
+  "nodeGroups": [],
+  "id": "Kgi1QhkxF7RSnkGJ",
+  "tags": []
+}
