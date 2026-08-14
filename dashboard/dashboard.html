@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard RRHH</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div>
+            <h1>Dashboard RRHH</h1>
+            <p>Sistema de preselección de candidatos</p>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- TARJETAS -->
+        <section class="cards">
+
+            <article class="card">
+                <h3>Total candidatos</h3>
+                <p id="total-candidatos">0</p>
+            </article>
+
+            <article class="card">
+                <h3>Score promedio</h3>
+                <p id="score-promedio">0%</p>
+            </article>
+
+            <article class="card">
+                <h3>Analizados</h3>
+                <p id="analizados">0</p>
+            </article>
+
+            <article class="card">
+                <h3>Aceptados</h3>
+                <p id="aceptados">0</p>
+            </article>
+
+            <article class="card">
+                <h3>Rechazados</h3>
+                <p id="rechazados">0</p>
+            </article>
+
+        </section>
+
+
+        <!-- FILTROS -->
+        <section class="filters">
+
+            <div>
+                <label for="filtro-vacante">Vacante</label>
+
+                <select id="filtro-vacante">
+                    <option value="todos">Todas</option>
+                </select>
+            </div>
+
+
+            <div>
+                <label for="filtro-estado">Estado</label>
+
+                <select id="filtro-estado">
+                    <option value="todos">Todos</option>
+                </select>
+            </div>
+
+
+            <div>
+                <label for="buscar">Buscar candidato</label>
+
+                <input
+                    type="text"
+                    id="buscar"
+                    placeholder="Nombre o ID..."
+                >
+            </div>
+
+        </section>
+
+
+        <!-- TABLA -->
+        <section class="table-container">
+
+            <h2>Candidatos</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Vacante</th>
+                        <th>Experiencia</th>
+                        <th>Score</th>
+                        <th>Estado</th>
+                        <th>Revisión RRHH</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tabla-candidatos">
+
+                    <tr>
+                        <td colspan="7">
+                            Cargando candidatos...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+
+    <script src="dashboard.js"></script>
+
+</body>
+</html>
