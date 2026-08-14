@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>TalentFlow IA</title>
+</head>
+
+<body>
+
+    <header class="header" id="header">
+
+        <h1 class="header__titulo">
+            TalentFlow IA
+        </h1>
+
+    </header>
+
+
+    <form action="" class="form" id="formulario" enctype="multipart/form-data">
+
+        <h2 class="form__titulo">
+            Ingresa tus datos
+        </h2>
+
+
+        <!-- NOMBRE Y CORREO -->
+
+        <div class="form__labels">
+
+            <label for="nombre" class="form__label">
+                Nombre Completo
+            </label>
+
+            <label for="correo" class="form__label">
+                Correo Electrónico
+            </label>
+
+        </div>
+
+
+        <div class="form__inputs">
+
+            <input type="text" id="nombre" name="nombre" class="form__input nombre" required>
+
+            <input type="email" id="correo" name="correo" class="form__input correo" required>
+
+        </div>
+
+
+        <!-- TELEFONO Y VACANTE -->
+
+        <div class="form__labels">
+
+            <label for="telefono" class="form__label">
+                Número Telefónico
+            </label>
+
+            <label for="vacante" class="form__label">
+                Vacante
+            </label>
+
+        </div>
+
+
+        <div class="form__inputs">
+
+            <input type="tel" id="telefono" name="telefono" class="form__input telefono" required>
+
+
+            <select name="vacante" id="vacante" class="form__input" required>
+
+                <option value="" selected disabled>
+                    Selecciona una vacante
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- EXPERIENCIA Y HABILIDADES -->
+
+        <div class="form__labels">
+
+            <label for="experiencia" class="form__label">
+                Años de Experiencia
+            </label>
+
+            <label for="habilidades" class="form__label">
+                Tecnologías, herramientas o conocimientos principales
+            </label>
+
+        </div>
+
+
+        <div class="form__inputs">
+
+            <input type="number" id="experiencia" name="experiencia" class="form__input experiencia" min="0" required>
+
+
+            <input type="text" id="habilidades" name="habilidades" class="form__input habilidades" required>
+
+        </div>
+
+
+        <!-- HOJA DE VIDA Y TRATAMIENTO -->
+
+        <div class="form__labels">
+
+            <label for="Hojavida" class="form__label">
+                Hoja de Vida
+            </label>
+
+            <label for="tratamiento" class="form__label">
+                Aceptar el tratamiento de datos personales
+            </label>
+
+        </div>
+
+
+        <div class="form__inputs">
+
+            <div class="hoja__vida">
+
+                <input type="file" id="Hojavida" name="Hojavida" class="archivo" accept=".pdf,application/pdf" required>
+
+            </div>
+
+
+            <input type="checkbox" id="tratamiento" name="tratamiento_datos" value="aceptado" class="form__check check"
+                required>
+
+        </div>
+
+
+        <button type="submit" class="form__button" id="boton">
+            Enviar
+        </button>
+
+    </form>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
