@@ -11,17 +11,17 @@ const vacantesURL =
 // WEBHOOK PARA ENVIAR LAS POSTULACIONES
 // =====================================================
 const postulacionURL =
-    "https://unworldly-unbalance-nautical.ngrok-free.dev/webhook-test/postulacion";
+    "https://unpiloted-scarce-elastic.ngrok-free.dev/webhook-test/postulacion";
 
 // =====================================================
-// CARGAR VACANTES
+// CARGAR VACANTES DESDE GOOGLE SHEETS
 // =====================================================
 async function cargarVacantes() {
     try {
         const respuesta = await fetch(vacantesURL, {
             method: "GET",
             headers: {
-                "ngrok-skip-browser-warning": "true" // Omite el aviso de ngrok que bloquea la petición
+                "ngrok-skip-browser-warning": "true"
             }
         });
 
@@ -29,16 +29,10 @@ async function cargarVacantes() {
             throw new Error("No se pudieron obtener las vacantes");
         }
 
-        // n8n devuelve TEXTO
-        const texto = await respuesta.text();
+        // n8n devuelve un JSON
+        const vacantes = await respuesta.json();
 
-        console.log("Vacantes recibidas:", texto);
-
-        // Separar cada título por salto de línea
-        const vacantes = texto
-            .split("\n")
-            .map(titulo => titulo.trim())
-            .filter(titulo => titulo !== "");
+        console.log("Vacantes recibidas:", vacantes);
 
         // Limpiar el select
         selectVacantes.innerHTML = "";
@@ -52,15 +46,17 @@ async function cargarVacantes() {
 
         selectVacantes.appendChild(opcionInicial);
 
-        // Crear una opción por cada título
-        vacantes.forEach(titulo => {
+        // Crear una opción por cada vacante
+        vacantes.forEach(vacante => {
             const option = document.createElement("option");
-            option.value = titulo;
-            option.textContent = titulo;
+
+            option.value = vacante.titulo;
+            option.textContent = vacante.titulo;
+
             selectVacantes.appendChild(option);
         });
 
-        console.log("Vacantes cargadas:", vacantes);
+        console.log("Vacantes cargadas correctamente:", vacantes);
 
     } catch (error) {
         console.error("Error al cargar las vacantes:", error);
@@ -68,6 +64,7 @@ async function cargarVacantes() {
         selectVacantes.innerHTML = "";
 
         const option = document.createElement("option");
+
         option.value = "";
         option.textContent = "No se pudieron cargar las vacantes";
         option.disabled = true;
@@ -89,7 +86,7 @@ formulario.addEventListener("submit", async (event) => {
         const respuesta = await fetch(postulacionURL, {
             method: "POST",
             headers: {
-                "ngrok-skip-browser-warning": "true" // Omite el aviso de ngrok al enviar
+                "ngrok-skip-browser-warning": "true"
             },
             body: formData
         });
@@ -99,13 +96,19 @@ formulario.addEventListener("submit", async (event) => {
         }
 
         const resultado = await respuesta.text();
+
         console.log("Respuesta de n8n:", resultado);
 
         alert("Datos enviados correctamente");
+
         formulario.reset();
+
+        // Volver a dejar la opción inicial después del reset
+        selectVacantes.selectedIndex = 0;
 
     } catch (error) {
         console.error("Error:", error);
+
         alert("No se pudieron enviar los datos");
     }
 });

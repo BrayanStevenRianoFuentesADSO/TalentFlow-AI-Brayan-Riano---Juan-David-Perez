@@ -1,22 +1,28 @@
 {
-  "name": "My workflow",
+  "name": "TalentFlow - Vacantes dinámicas",
   "nodes": [
     {
       "parameters": {
         "sendTo": "={{ $json.Correo }}",
         "subject": "Postulacion Aprobada",
-        "message": "=<div style=\"margin:0; padding:0; background-color:#f4f7fb; font-family:Arial, Helvetica, sans-serif; color:#1f2937;\">\n\n  <!-- Contenedor principal -->\n  <div style=\"max-width:650px; margin:0 auto; padding:40px 20px;\">\n\n    <!-- Header -->\n    <div style=\"background-color:#172554; border-radius:14px 14px 0 0; padding:28px 35px; text-align:center;\">\n\n      <div style=\"font-size:28px; font-weight:bold; color:#ffffff; letter-spacing:0.5px;\">\n        Talent<span style=\"color:#38bdf8;\">Flow</span>\n      </div>\n\n      <div style=\"margin-top:8px; font-size:13px; color:#bfdbfe; letter-spacing:1px;\">\n        GESTIÓN DE TALENTO\n      </div>\n\n    </div>\n\n    <!-- Contenido -->\n    <div style=\"background-color:#ffffff; padding:40px 35px; border-radius:0 0 14px 14px; box-shadow:0 5px 20px rgba(15, 23, 42, 0.08);\">\n\n      <!-- Saludo -->\n      <p style=\"font-size:16px; margin:0 0 20px 0; color:#374151;\">\n        Hola <strong style=\"color:#172554;\">{{ $json.Nombre }}</strong>,\n      </p>\n\n      <h1 style=\"font-size:24px; color:#172554; margin:0 0 18px 0;\">\n        ¡Tu postulación ha sido registrada!\n      </h1>\n\n      <p style=\"font-size:15px; line-height:1.7; color:#4b5563; margin:0 0 25px 0;\">\n        Te informamos que hemos recibido correctamente tu postulación.\n        A continuación encontrarás los detalles asociados a tu proceso:\n      </p>\n\n      <!-- Tarjeta de información -->\n      <div style=\"border:1px solid #e5e7eb; border-radius:10px; overflow:hidden; margin-bottom:28px;\">\n\n        <!-- Título -->\n        <div style=\"background-color:#f8fafc; padding:16px 20px; border-bottom:1px solid #e5e7eb;\">\n          <span style=\"font-size:14px; font-weight:bold; color:#172554;\">\n            DETALLES DE LA POSTULACIÓN\n          </span>\n        </div>\n\n        <!-- Vacante -->\n        <div style=\"padding:18px 20px; border-bottom:1px solid #f1f5f9;\">\n\n          <div style=\"font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;\">\n            Vacante\n          </div>\n\n          <div style=\"font-size:17px; font-weight:bold; color:#172554;\">\n            {{ $json.Vacante }}\n          </div>\n\n        </div>\n\n        <!-- Fecha -->\n        <div style=\"padding:18px 20px; border-bottom:1px solid #f1f5f9;\">\n\n          <div style=\"font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;\">\n            Fecha de postulación\n          </div>\n\n          <div style=\"font-size:15px; color:#374151;\">\n            {{ $json.Fecha_Postulacion }}\n          </div>\n\n        </div>\n\n        <!-- Estado -->\n        <div style=\"padding:18px 20px;\">\n\n          <div style=\"font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;\">\n            Estado actual\n          </div>\n\n          <span style=\"display:inline-block; background-color:#e0f2fe; color:#0369a1; padding:7px 14px; border-radius:20px; font-size:13px; font-weight:bold;\">\n            {{ $json.Estado }}\n          </span>\n\n        </div>\n\n      </div>\n\n      <!-- Mensaje -->\n      <div style=\"background-color:#f8fafc; border-left:4px solid #38bdf8; padding:18px 20px; margin-bottom:28px; border-radius:0 6px 6px 0;\">\n\n        <p style=\"font-size:14px; line-height:1.7; color:#4b5563; margin:0;\">\n          Tu información ha sido registrada en nuestro sistema y será\n          evaluada de acuerdo con los criterios establecidos para la\n          vacante seleccionada.\n        </p>\n\n      </div>\n\n      <p style=\"font-size:15px; line-height:1.7; color:#4b5563; margin:0 0 10px 0;\">\n        Te recomendamos estar atento a tu correo electrónico para recibir\n        cualquier actualización relacionada con tu proceso de selección.\n      </p>\n\n      <p style=\"font-size:15px; color:#374151; margin:25px 0 0 0;\">\n        Gracias por confiar en <strong style=\"color:#172554;\">Talent<span style=\"color:#38a9df;\">Flow</span></strong>.\n      </p>\n\n      <!-- Separador -->\n      <div style=\"height:1px; background-color:#e5e7eb; margin:35px 0 20px 0;\"></div>\n\n      <!-- Footer -->\n      <div style=\"text-align:center;\">\n\n        <div style=\"font-size:18px; font-weight:bold; color:#172554;\">\n          Talent<span style=\"color:#38a9df;\">Flow</span>\n        </div>\n\n        <p style=\"font-size:12px; color:#9ca3af; line-height:1.5; margin:8px 0 0 0;\">\n          Plataforma de gestión y selección de talento\n        </p>\n\n        <p style=\"font-size:11px; color:#b0b7c3; margin:15px 0 0 0;\">\n          Este correo fue generado automáticamente.\n          Por favor, no respondas directamente a este mensaje.\n        </p>\n\n      </div>\n\n    </div>\n\n  </div>\n\n</div>",
+        "message": "=<div style=\"margin:0; padding:0; background-color:#f4f7fb; font-family:Arial, Helvetica, sans-serif; color:#1f2937;\"><div style=\"max-width:650px; margin:0 auto; padding:40px 20px;\"><div style=\"background-color:#172554; border-radius:14px 14px 0 0; padding:28px 35px; text-align:center;\"><div style=\"font-size:28px; font-weight:bold; color:#ffffff; letter-spacing:0.5px;\">Talent<span style=\"color:#38bdf8;\">Flow</span></div><div style=\"margin-top:8px; font-size:13px; color:#bfdbfe; letter-spacing:1px;\">GESTIÓN DE TALENTO</div></div><div style=\"background-color:#ffffff; padding:40px 35px; border-radius:0 0 14px 14px; box-shadow:0 5px 20px rgba(15, 23, 42, 0.08);\"><p style=\"font-size:16px; margin:0 0 20px 0; color:#374151;\">Hola <strong style=\"color:#172554;\">{{ $json.Nombre }}</strong>,</p><h1 style=\"font-size:24px; color:#172554; margin:0 0 18px 0;\">¡Tu postulación ha sido registrada!</h1><p style=\"font-size:15px; line-height:1.7; color:#4b5563; margin:0 0 25px 0;\">Te informamos que hemos recibido correctamente tu postulación. A continuación encontrarás los detalles asociados a tu proceso:</p><div style=\"border:1px solid #e5e7eb; border-radius:10px; overflow:hidden; margin-bottom:28px;\"><div style=\"background-color:#f8fafc; padding:16px 20px; border-bottom:1px solid #e5e7eb;\"><span style=\"font-size:14px; font-weight:bold; color:#172554;\">DETALLES DE LA POSTULACIÓN</span></div><div style=\"padding:18px 20px; border-bottom:1px solid #f1f5f9;\"><div style=\"font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;\">Vacante</div><div style=\"font-size:17px; font-weight:bold; color:#172554;\">{{ $json.Vacante }}</div></div><div style=\"padding:18px 20px; border-bottom:1px solid #f1f5f9;\"><div style=\"font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;\">Fecha de postulación</div><div style=\"font-size:15px; color:#374151;\">{{ $json.Fecha_Postulacion }}</div></div><div style=\"padding:18px 20px;\"><div style=\"font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;\">Estado actual</div><span style=\"display:inline-block; background-color:#e0f2fe; color:#0369a1; padding:7px 14px; border-radius:20px; font-size:13px; font-weight:bold;\">{{ $json.Estado }}</span></div></div><div style=\"background-color:#f8fafc; border-left:4px solid #38bdf8; padding:18px 20px; margin-bottom:28px; border-radius:0 6px 6px 0;\"><p style=\"font-size:14px; line-height:1.7; color:#4b5563; margin:0;\">Tu información ha sido registrada en nuestro sistema y será evaluada de acuerdo con los criterios establecidos para la vacante seleccionada.</p></div><p style=\"font-size:15px; line-height:1.7; color:#4b5563; margin:0 0 10px 0;\">Te recomendamos estar atento a tu correo electrónico para recibir cualquier actualización relacionada con tu proceso de selección.</p><p style=\"font-size:15px; color:#374151; margin:25px 0 0 0;\">Gracias por confiar en <strong style=\"color:#172554;\">Talent<span style=\"color:#38a9df;\">Flow</span></strong>.</p><div style=\"height:1px; background-color:#e5e7eb; margin:35px 0 20px 0;\"></div><div style=\"text-align:center;\"><div style=\"font-size:18px; font-weight:bold; color:#172554;\">Talent<span style=\"color:#38a9df;\">Flow</span></div><p style=\"font-size:12px; color:#9ca3af; line-height:1.5; margin:8px 0 0 0;\">Plataforma de gestión y selección de talento</p><p style=\"font-size:11px; color:#b0b7c3; margin:15px 0 0 0;\">Este correo fue generado automáticamente. Por favor, no respondas directamente a este mensaje.</p></div></div></div>",
         "options": {}
       },
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        1600,
-        368
+        2272,
+        992
       ],
-      "id": "a618cc2f-a1fb-401e-8a8c-f3ff7f3dfcb9",
+      "id": "8367d5f8-fd42-484f-9c88-0f8e01c1e19d",
       "name": "Send a message",
-      "webhookId": "f80995e7-4952-4908-bf98-5a0153d916e5"
+      "webhookId": "f80995e7-4952-4908-bf98-5a0153d916e5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "QHf829IUyGEf4UXL",
+          "name": "Gmail account"
+        }
+      }
     },
     {
       "parameters": {
@@ -27,10 +33,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -1536,
-        656
+        -864,
+        1280
       ],
-      "id": "b76069fe-7c92-4187-b692-1f67939272c6",
+      "id": "ef51cb42-0454-460a-a683-670a9c8b7985",
       "name": "Webhook1",
       "webhookId": "224ba5cd-558c-41ee-ac46-c065cf372214"
     },
@@ -52,10 +58,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        928,
-        272
+        1600,
+        896
       ],
-      "id": "9ad778bd-7dff-4357-a776-b0d02755764b",
+      "id": "25301083-c861-411c-8e55-cb81e350f8f7",
       "name": "revision prioritaria1"
     },
     {
@@ -81,7 +87,7 @@
             {
               "id": "af722b29-28bc-4ebf-a714-6e1131cdeda3",
               "leftValue": "={{ $json.body.correo }}",
-              "rightValue": "={{ $json.body.correo }}",
+              "rightValue": "",
               "operator": {
                 "type": "string",
                 "operation": "notEmpty",
@@ -91,7 +97,7 @@
             {
               "id": "4c085b7d-5140-4cfc-a57b-baebb2aa1a6c",
               "leftValue": "={{ $json.body.telefono }}",
-              "rightValue": "={{ $json.body.telefono }}",
+              "rightValue": "",
               "operator": {
                 "type": "string",
                 "operation": "notEmpty",
@@ -101,7 +107,7 @@
             {
               "id": "9b4e0341-1a3a-4c0d-baab-dda191f01c28",
               "leftValue": "={{ $json.body.vacante }}",
-              "rightValue": "={{ $json.body.vacante }}",
+              "rightValue": "",
               "operator": {
                 "type": "string",
                 "operation": "notEmpty",
@@ -111,7 +117,7 @@
             {
               "id": "bdc01d14-01e0-4e47-8b25-a1077986a3cf",
               "leftValue": "={{ $json.body.experiencia }}",
-              "rightValue": "={{ $json.body.experiencia }}",
+              "rightValue": "",
               "operator": {
                 "type": "string",
                 "operation": "notEmpty",
@@ -121,7 +127,7 @@
             {
               "id": "8cc19292-64e7-4958-abc8-4bc81c1c5125",
               "leftValue": "={{ $json.body.habilidades }}",
-              "rightValue": "={{ $json.body.habilidades }}",
+              "rightValue": "",
               "operator": {
                 "type": "string",
                 "operation": "notEmpty",
@@ -131,7 +137,7 @@
             {
               "id": "5b94c927-e8dd-4b4f-b4e8-019e303469c1",
               "leftValue": "={{ $json.body.tratamiento_datos }}",
-              "rightValue": "={{ $json.body.tratamiento_datos }}",
+              "rightValue": "",
               "operator": {
                 "type": "string",
                 "operation": "notEmpty",
@@ -146,23 +152,23 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -1312,
-        656
+        -640,
+        1280
       ],
-      "id": "e41ece6f-aeb8-45e2-b1f5-513d621e793a",
+      "id": "84ee782f-475b-4bff-8bb0-dfa4f37e2646",
       "name": "llegaron los datos?1"
     },
     {
       "parameters": {
-        "errorMessage": "se presento un error por favor vuelva a intentarlo "
+        "errorMessage": "se presento un error por favor vuelva a intentarlo"
       },
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        -1088,
-        752
+        -416,
+        1376
       ],
-      "id": "bb3d9c24-fa60-4be9-992f-8256787cc33f",
+      "id": "58a64978-5650-4f66-99bf-0da8ed5c6eb7",
       "name": "error no llegaron los datos1"
     },
     {
@@ -174,10 +180,10 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1.1,
       "position": [
-        -864,
-        368
+        -192,
+        992
       ],
-      "id": "31952d6c-4ca9-40df-8697-b22c6c975396",
+      "id": "198ad7c0-a82e-45a0-acf4-df179a8391ff",
       "name": "extraer documento PDF1"
     },
     {
@@ -189,7 +195,7 @@
           "mode": "list",
           "cachedResultName": "models/gemini-3.7-flash"
         },
-        "text": "=Analiza el siguiente documento.\n\nPRIMERO, determina si el documento corresponde realmente a una hoja de vida (CV).\n\nConsidera que es una hoja de vida si contiene información propia de un perfil profesional o laboral, como por ejemplo:\n- Datos personales o de contacto.\n- Perfil profesional.\n- Formación académica.\n- Experiencia laboral.\n- Habilidades o competencias.\n- Idiomas.\n- Información relacionada con la trayectoria profesional.\n\nSi el documento es una factura, certificado, recibo, contrato, documento académico independiente, manual, informe, imagen/documento sin información profesional o cualquier otro documento que no corresponda a una hoja de vida, considera que NO es una hoja de vida.\n\nDevuelve el resultado en el campo:\n\n\"es_hoja_de_vida\": true\n\nsi el documento corresponde a una hoja de vida.\n\nDevuelve:\n\n\"es_hoja_de_vida\": false\n\nsi el documento NO corresponde a una hoja de vida.\n\nIMPORTANTE:\n- No determines que es una hoja de vida solamente porque el documento sea un PDF.\n- Analiza el contenido del documento.\n- No inventes información.\n- Si tienes dudas razonables sobre si es una hoja de vida, devuelve false.\n\n\nDespués, si el documento es una hoja de vida, extrae UNICAMENTE información que aparezca explícitamente en el CV.\n\nSi una categoría no aparece, devuelve un arreglo vacío [].\n\nIdentifica:\n\n- datos_personales\n- perfil\n- formaciones\n- experiencias\n- habilidades\n- competencias\n- idiomas\n\nDevuelve UNICAMENTE un objeto JSON válido.\n\nNo utilices Markdown.\nNo escribas ```json.\nNo agregues explicaciones antes o después del JSON.\nLa estructura de respuesta debe contener exactamente los siguientes campos:\n\n{\n  \"es_hoja_de_vida\": [true o false según el contenido real del documento],\n  \"datos_personales\": {},\n  \"perfil\": \"\",\n  \"formaciones\": [],\n  \"experiencias\": [],\n  \"habilidades\": [],\n  \"competencias\": [],\n  \"idiomas\": [],\n  \"observacion_IA\": \"\"\n}\n\nIMPORTANTE SOBRE \"es_hoja_de_vida\":\n\nEl valor de \"es_hoja_de_vida\" DEBE ser booleano.\n\nUsa true ÚNICAMENTE cuando el contenido analizado corresponda realmente a una hoja de vida/CV.\n\nUsa false cuando el documento corresponda a cualquier otro tipo de documento, por ejemplo:\n- factura\n- recibo\n- certificado\n- contrato\n- manual\n- informe\n- documento académico que no sea una hoja de vida\n- documento legal\n- documento empresarial\n- cualquier documento que no describa la trayectoria profesional de una persona.\n\nNO determines que es una hoja de vida solamente porque:\n- el archivo sea PDF\n- tenga el nombre \"hoja de vida\"\n- tenga datos personales\n- tenga una fotografía\n- tenga texto relacionado con una persona.\n\nDebes analizar el CONTENIDO completo del documento.\n\nSi el documento no contiene información suficiente para identificar claramente una trayectoria profesional, formación, experiencia laboral o perfil profesional, devuelve:\n\n\"es_hoja_de_vida\": false\n\nNo inventes información.\n\nEl valor de \"es_hoja_de_vida\" debe representar exclusivamente tu clasificación del documento.to basada UNICAMENTE en la información encontrada en el CV.\n\nLa observación debe resumir:\n- principales conocimientos o habilidades técnicas\n- formación relevante\n- experiencia relevante\n- fortalezas o competencias destacables\n\nNo inventes información.\nNo menciones requisitos de una vacante que no aparezcan en el CV.\nNo hagas suposiciones.\n\nDevuelve la observación en el campo:\n\n\"observacion_IA\": \"\"\n\nDOCUMENTO:\n\n{{ $json.text }}",
+        "text": "=Analiza el siguiente documento.\n\nPRIMERO, determina si el documento corresponde realmente a una hoja de vida (CV).\n\nConsidera que es una hoja de vida si contiene información propia de un perfil profesional o laboral, como por ejemplo:\n- Datos personales o de contacto.\n- Perfil profesional.\n- Formación académica.\n- Experiencia laboral.\n- Habilidades o competencias.\n- Idiomas.\n- Información relacionada con la trayectoria profesional.\n\nSi el documento es una factura, certificado, recibo, contrato, documento académico independiente, manual, informe, imagen/documento sin información profesional o cualquier otro documento que no corresponda a una hoja de vida, considera que NO es una hoja de vida.\n\nDevuelve el resultado en el campo:\n\n\"es_hoja_de_vida\": true\n\nsi el documento corresponde a una hoja de vida.\n\nDevuelve:\n\n\"es_hoja_de_vida\": false\n\nsi el documento NO corresponde a una hoja de vida.\n\nIMPORTANTE:\n- No determines que es una hoja de vida solamente porque el documento sea un PDF.\n- Analiza el contenido del documento.\n- No inventes información.\n- Si tienes dudas razonables sobre si es una hoja de vida, devuelve false.\n\nDespués, si el documento es una hoja de vida, extrae UNICAMENTE información que aparezca explícitamente en el CV.\n\nSi una categoría no aparece, devuelve un arreglo vacío [].\n\nIdentifica:\n\n- datos_personales\n- perfil\n- formaciones\n- experiencias\n- habilidades\n- competencias\n- idiomas\n\nDevuelve UNICAMENTE un objeto JSON válido.\n\nNo utilices Markdown.\nNo escribas ```json.\nNo agregues explicaciones antes o después del JSON.\nLa estructura de respuesta debe contener exactamente los siguientes campos:\n\n{\n  \"es_hoja_de_vida\": [true o false según el contenido real del documento],\n  \"datos_personales\": {},\n  \"perfil\": \"\",\n  \"formaciones\": [],\n  \"experiencias\": [],\n  \"habilidades\": [],\n  \"competencias\": [],\n  \"idiomas\": [],\n  \"observacion_IA\": \"\"\n}\n\nIMPORTANTE SOBRE \"es_hoja_de_vida\":\n\nEl valor de \"es_hoja_de_vida\" DEBE ser booleano.\n\nUsa true ÚNICAMENTE cuando el contenido analizado corresponda realmente a una hoja de vida/CV.\n\nUsa false cuando el documento corresponda a cualquier otro tipo de documento, por ejemplo:\n- factura\n- recibo\n- certificado\n- contrato\n- manual\n- informe\n- documento académico que no sea una hoja de vida\n- documento legal\n- documento empresarial\n- cualquier documento que no describa la trayectoria profesional de una persona.\n\nNO determines que es una hoja de vida solamente porque:\n- el archivo sea PDF\n- tenga el nombre \"hoja de vida\"\n- tenga datos personales\n- tenga una fotografía\n- tenga texto relacionado con una persona.\n\nDebes analizar el CONTENIDO completo del documento.\n\nSi el documento no contiene información suficiente para identificar claramente una trayectoria profesional, formación, experiencia laboral o perfil profesional, devuelve:\n\n\"es_hoja_de_vida\": false\n\nNo inventes información.\n\nLa observación debe resumir:\n- principales conocimientos o habilidades técnicas\n- formación relevante\n- experiencia relevante\n- fortalezas o competencias destacables\n\nNo inventes información.\nNo menciones requisitos de una vacante que no aparezcan en el CV.\nNo hagas suposiciones.\n\nDevuelve la observación en el campo:\n\n\"observacion_IA\": \"\"\n\nDOCUMENTO:\n\n{{ $json.text }}",
         "inputType": "binary",
         "binaryPropertyName": "",
         "options": {}
@@ -197,10 +203,10 @@
       "type": "@n8n/n8n-nodes-langchain.googleGemini",
       "typeVersion": 1.2,
       "position": [
-        -640,
-        368
+        32,
+        992
       ],
-      "id": "d4b38343-2cf6-4227-9fa9-42c57f829feb",
+      "id": "c14623ae-d32f-4c01-a218-6ef8cfdaaf45",
       "name": "analizando del documento1",
       "credentials": {
         "googlePalmApi": {
@@ -211,225 +217,74 @@
     },
     {
       "parameters": {
-        "jsCode": "const texto = $input.first().json.content.parts[0].text;\n\nconst datos = JSON.parse(texto);\n\nconst vacante = $('Webhook1').first().json.body.vacante;\n\nconst experiencia = $('Webhook1').first().json.body.experiencia;\n\nconst formaciones = datos.formaciones || [];\n\nconst niveles = [\n  { palabras: ['doctorado'], prioridad: 6 },\n  { palabras: ['maestría', 'maestria', 'master'], prioridad: 5 },\n  { palabras: ['universitario', 'universidad', 'pregrado', 'licenciatura'], prioridad: 4 },\n  { palabras: ['tecnología', 'tecnologia', 'tecnólogo', 'tecnologo'], prioridad: 3 },\n  { palabras: ['técnico', 'tecnico'], prioridad: 2 },\n  { palabras: ['bachillerato', 'bachiller'], prioridad: 1 }\n];\n\nlet nivelEducativo = 'No especificado';\nlet prioridadMayor = 0;\n\nfor (const formacion of formaciones) {\n\n  const textoFormacion = String(\n    formacion.titulo || ''\n  ).toLowerCase();\n\n  for (const nivel of niveles) {\n\n    const encontrado = nivel.palabras.some(palabra =>\n      textoFormacion.includes(palabra)\n    );\n\n    if (\n      encontrado &&\n      nivel.prioridad > prioridadMayor\n    ) {\n      nivelEducativo = formacion.titulo;\n      prioridadMayor = nivel.prioridad;\n    }\n  }\n}\n\nconst idCandidato =\n  'TF-' +\n  $now.toFormat('yyyyMMddHHmmss') +\n  '-' +\n  Math.floor(Math.random() * 10000);\n\n\nreturn [\n  {\n    json: {\n      ID_candidato:idCandidato,\n      ...datos,\n      nivel_Educativo:nivelEducativo,\n      vacante: vacante,\n      experiencia: experiencia\n    }\n  }\n];"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -192,
-        176
-      ],
-      "id": "d036bf3a-ac59-4d8c-b89b-e34e8a976020",
-      "name": "Code in JavaScript1"
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 3
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $('Webhook1').item.json.body.vacante }}",
-                    "rightValue": "Backend junior",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    },
-                    "id": "4c27b86a-d52e-4feb-886c-b549e99ee006"
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "Backend junior"
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 3
-                },
-                "conditions": [
-                  {
-                    "id": "585719f9-8685-4b12-af2b-60ed9ffbc114",
-                    "leftValue": "={{ $('Webhook1').item.json.body.vacante }}",
-                    "rightValue": "Data analyst",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "Data analyst"
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 3
-                },
-                "conditions": [
-                  {
-                    "id": "e8fde5ef-1b23-4dea-b9a6-67db3a2f930b",
-                    "leftValue": "={{ $('Webhook1').item.json.body.vacante }}",
-                    "rightValue": "Frontend junior",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "Frontend junior"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3.4,
-      "position": [
-        32,
-        160
-      ],
-      "id": "eb806f5f-c374-4beb-a343-6e789fb8e365",
-      "name": "tipo de vacante1"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "4e92fb39-530b-40c9-9e0e-5fa2c5d0f6b3",
-              "name": "vacante_ref",
-              "value": "={{ $json.vacante }}",
-              "type": "string"
-            },
-            {
-              "id": "fa3e2a8f-0f95-4f7e-ab15-c5c0cf02b673",
-              "name": "req_habilidades",
-              "value": "[\"Java\", \"Spring Boot\", \"SQL\", \"Git\", \"Rest Api\"]",
-              "type": "array"
-            },
-            {
-              "id": "ba4f6554-ac63-4335-8191-253f89c8431a",
-              "name": "exp_minima",
-              "value": 1,
-              "type": "number"
-            }
-          ]
-        },
-        "includeOtherFields": true,
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        256,
-        80
-      ],
-      "id": "87a355a7-bf9e-49de-825c-de97cb0d6402",
-      "name": "requisitos para backend1"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "3d5665f3-e08d-4bd2-809d-51d2a500823e",
-              "name": "vacante_ref",
-              "value": "={{ $json.vacante }}",
-              "type": "string"
-            },
-            {
-              "id": "9c73e0f6-c661-43e0-9b22-13c80ae74374",
-              "name": "req_habilidades",
-              "value": "[\"Python\", \"SQL\", \"Excel\", \"Power BI\"]",
-              "type": "array"
-            },
-            {
-              "id": "96cf8966-9581-46ec-8436-624e18ff2f7d",
-              "name": "exp_minima",
-              "value": 1,
-              "type": "number"
-            }
-          ]
-        },
-        "includeOtherFields": true,
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        256,
-        272
-      ],
-      "id": "e5e05333-1c15-4f87-81a8-e99066a1605a",
-      "name": "requisitos para data analys1"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "efa6da0c-65fc-4a02-a663-f2d75e29fadb",
-              "name": "vacante_ref",
-              "value": "={{ $json.vacante }}",
-              "type": "string"
-            },
-            {
-              "id": "73bad507-69df-4952-bb89-67b92506261b",
-              "name": "req_habilidades",
-              "value": "[\"HTML\", \"Css\", \"JavaScript\", \"Git\", \"Responsive Design\"]",
-              "type": "array"
-            },
-            {
-              "id": "77318111-be48-4c0d-adb1-cf1cd43e9b43",
-              "name": "exp_minima",
-              "value": 1,
-              "type": "number"
-            }
-          ]
-        },
-        "includeOtherFields": true,
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        256,
-        560
-      ],
-      "id": "6ad1f046-fba9-405a-9384-c10dc7a4f4ec",
-      "name": "requisitos para frontend1"
-    },
-    {
-      "parameters": {
-        "jsCode": "const item = $input.first().json;\n\n// Datos del candidato\nconst habilidades = item.habilidades || [];\nconst experiencia = Number(item.experiencia || 0);\n\n// Requisitos de la vacante\nconst requisitos = item.req_habilidades || [];\nconst expMinima = Number(item.exp_minima || 0);\n\n// Normalizamos los textos para comparar sin importar mayúsculas/minúsculas\nconst habilidadesNormalizadas = habilidades.map(h =>\n  String(h).trim().toLowerCase()\n);\n\nconst requisitosNormalizados = requisitos.map(h =>\n  String(h).trim().toLowerCase()\n);\n\n// Buscamos coincidencias\nconst habilidadesCoincidentes = requisitosNormalizados.filter(req =>\n  habilidadesNormalizadas.includes(req)\n);\n\n// Calculamos porcentaje de habilidades\nlet porcentajeHabilidades = 0;\n\nif (requisitosNormalizados.length > 0) {\n  porcentajeHabilidades =\n    habilidadesCoincidentes.length / requisitosNormalizados.length;\n}\n\n// Habilidades = 70 puntos\nconst puntosHabilidades = porcentajeHabilidades * 70;\n\n// Experiencia = 30 puntos\nconst puntosExperiencia = experiencia >= expMinima ? 30 : 0;\n\n// Score final\nconst score = Math.round(puntosHabilidades + puntosExperiencia);\n\n// Clasificación\nlet clasificacion;\n\nif (score >= 80) {\n  clasificacion = \"Alta\";\n} else if (score >= 60) {\n  clasificacion = \"Media\";\n} else {\n  clasificacion = \"Baja\";\n}\n\nreturn [\n  {\n    json: {\n      ...item,\n\n      habilidades_coincidentes: habilidadesCoincidentes,\n      total_requisitos: requisitosNormalizados.length,\n      requisitos_cumplidos: habilidadesCoincidentes.length,\n\n      puntos_habilidades: Math.round(puntosHabilidades),\n      puntos_experiencia: puntosExperiencia,\n\n      score: score,\n      clasificacion: clasificacion\n    }\n  }\n];"
+        "jsCode": "const texto = $input.first().json.content.parts[0].text;\nconst datos = JSON.parse(texto);\nconst webhook = $('Webhook1').first().json.body;\nconst vacante = webhook.vacante;\nconst experiencia = webhook.experiencia;\nconst formaciones = datos.formaciones || [];\n\nconst niveles = [\n  { palabras: ['doctorado'], prioridad: 6 },\n  { palabras: ['maestría', 'maestria', 'master'], prioridad: 5 },\n  { palabras: ['universitario', 'universidad', 'pregrado', 'licenciatura'], prioridad: 4 },\n  { palabras: ['tecnología', 'tecnologia', 'tecnólogo', 'tecnologo'], prioridad: 3 },\n  { palabras: ['técnico', 'tecnico'], prioridad: 2 },\n  { palabras: ['bachillerato', 'bachiller'], prioridad: 1 }\n];\n\nlet nivelEducativo = 'No especificado';\nlet prioridadMayor = 0;\n\nfor (const formacion of formaciones) {\n  const textoFormacion = String(formacion.titulo || '').toLowerCase();\n  for (const nivel of niveles) {\n    const encontrado = nivel.palabras.some(palabra => textoFormacion.includes(palabra));\n    if (encontrado && nivel.prioridad > prioridadMayor) {\n      nivelEducativo = formacion.titulo;\n      prioridadMayor = nivel.prioridad;\n    }\n  }\n}\n\nconst idCandidato = 'TF-' + $now.toFormat('yyyyMMddHHmmss') + '-' + Math.floor(Math.random() * 10000);\n\nreturn [{\n  json: {\n    ID_candidato: idCandidato,\n    ...datos,\n    nivel_Educativo: nivelEducativo,\n    vacante: vacante,\n    experiencia: experiencia\n  }\n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
         480,
-        368
+        800
       ],
-      "id": "5dcc1eb3-345c-485c-8240-d2bf42d2ca7c",
+      "id": "229d2b33-7fd3-432a-be46-664b89bf7d38",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE",
+          "mode": "list",
+          "cachedResultName": "vacantes_n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        704,
+        800
+      ],
+      "id": "b9fdee15-0f8d-4736-9096-2c4a8b2fcef4",
+      "name": "Buscar vacantes en Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "wNlbyBvBZ0IoYqta",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const candidato = $('Code in JavaScript1').first().json;\nconst filas = $input.all().map(item => item.json);\n\nconst vacanteSeleccionada = String(candidato.vacante || '').trim().toLowerCase();\n\nconst vacanteEncontrada = filas.find(fila =>\n  String(fila.titulo || '').trim().toLowerCase() === vacanteSeleccionada\n);\n\nif (!vacanteEncontrada) {\n  throw new Error(`No se encontró la vacante: ${candidato.vacante}`);\n}\n\nconst requisitos = String(vacanteEncontrada.hab_requeridas || '')\n  .split(',')\n  .map(h => h.trim())\n  .filter(Boolean);\n\nconst experienciaMinima = Number(vacanteEncontrada.year_experiencia || 0);\n\nreturn [{\n  json: {\n    ...candidato,\n    vacante_ref: vacanteEncontrada.titulo,\n    req_habilidades: requisitos,\n    exp_minima: experienciaMinima\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        928,
+        800
+      ],
+      "id": "aa6c7b37-a825-402e-acdf-b80db454e28f",
+      "name": "Obtener requisitos de la vacante"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first().json;\n\nconst habilidades = Array.isArray(item.habilidades)\n  ? item.habilidades\n  : String(item.habilidades || '').split(',').map(h => h.trim()).filter(Boolean);\n\nconst experiencia = Number(item.experiencia || 0);\nconst requisitos = Array.isArray(item.req_habilidades) ? item.req_habilidades : [];\nconst expMinima = Number(item.exp_minima || 0);\n\nconst normalizar = texto => String(texto).trim().toLowerCase();\n\nconst habilidadesNormalizadas = habilidades.map(normalizar);\nconst requisitosNormalizados = requisitos.map(normalizar);\n\nconst habilidadesCoincidentes = requisitosNormalizados.filter(req =>\n  habilidadesNormalizadas.some(habilidad => habilidad === req)\n);\n\nlet porcentajeHabilidades = 0;\n\nif (requisitosNormalizados.length > 0) {\n  porcentajeHabilidades = habilidadesCoincidentes.length / requisitosNormalizados.length;\n}\n\nconst puntosHabilidades = porcentajeHabilidades * 70;\nconst puntosExperiencia = experiencia >= expMinima ? 30 : 0;\nconst score = Math.round(puntosHabilidades + puntosExperiencia);\n\nlet clasificacion;\n\nif (score >= 80) {\n  clasificacion = 'Alta';\n} else if (score >= 60) {\n  clasificacion = 'Media';\n} else {\n  clasificacion = 'Baja';\n}\n\nreturn [{\n  json: {\n    ...item,\n    habilidades_coincidentes: habilidadesCoincidentes,\n    total_requisitos: requisitosNormalizados.length,\n    requisitos_cumplidos: habilidadesCoincidentes.length,\n    puntos_habilidades: Math.round(puntosHabilidades),\n    puntos_experiencia: puntosExperiencia,\n    score: score,\n    clasificacion: clasificacion\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1152,
+        992
+      ],
+      "id": "4493b70a-9c8b-4712-830b-032953cf93de",
       "name": "comparar score1"
     },
     {
@@ -515,10 +370,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
       "position": [
-        704,
-        352
+        1376,
+        976
       ],
-      "id": "e0d4d145-ee32-41ce-93a2-9674e13bdcdc",
+      "id": "518be2a0-f1e1-439d-b497-886c50472246",
       "name": "tomar desicion de clasificacion1"
     },
     {
@@ -539,10 +394,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        928,
-        464
+        1600,
+        1088
       ],
-      "id": "b4c9733d-b813-4029-be3e-94e0daba3d40",
+      "id": "6b79e644-6b9b-4ed8-963b-59660317cc53",
       "name": "revision manual1"
     },
     {
@@ -563,10 +418,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        928,
-        656
+        1600,
+        1280
       ],
-      "id": "078ea12a-8721-4027-84d6-7ca5776f99b4",
+      "id": "5329d2f8-efc6-4aca-827f-955c21890b1b",
       "name": "revision secundaria1"
     },
     {
@@ -587,7 +442,7 @@
           "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA/edit#gid=0"
         },
         "columns": {
-          "mappingMode": "defineBelow",
+          "mappingMode": "autoMapInputData",
           "value": {
             "ID_candidato": "={{ $json.ID_candidato }}",
             "Nombre": "={{ $json.Nombre }}",
@@ -731,10 +586,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1376,
-        368
+        2048,
+        992
       ],
-      "id": "0f6d38b0-47b1-46ba-9bb8-2055f0d4f641",
+      "id": "ad67b085-8ed6-41b1-93b1-35ac124ee121",
       "name": "Append row in sheet1",
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -759,8 +614,7 @@
               "rightValue": "application/pdf",
               "operator": {
                 "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
+                "operation": "equals"
               }
             }
           ],
@@ -771,10 +625,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -1088,
-        560
+        -416,
+        1184
       ],
-      "id": "2f545407-bfcc-4f76-87c0-2d071b5460b6",
+      "id": "64b6fc8e-c552-4520-b727-a46cd781feeb",
       "name": "es pdf?1"
     },
     {
@@ -784,107 +638,24 @@
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        -864,
-        560
+        -192,
+        1184
       ],
-      "id": "e6c94133-a828-4c5e-87fc-36a09c7317bb",
+      "id": "aa8209ed-9caa-48b8-9c37-2c771f6d1d02",
       "name": "Stop and Error2"
     },
     {
       "parameters": {
-        "errorMessage": "lo sentimos el documento que mandaste no es un CV vuelvelos a intentar y verifica si el PDF sea el correcto "
+        "errorMessage": "lo sentimos el documento que mandaste no es un CV vuelvelos a intentar y verifica si el PDF sea el correcto"
       },
       "type": "n8n-nodes-base.stopAndError",
       "typeVersion": 1,
       "position": [
-        -192,
-        368
+        480,
+        992
       ],
-      "id": "fbf7a61e-6af5-469a-a03c-dd84fac553c2",
+      "id": "9521e224-4c69-4a18-8eea-1e6a4502e223",
       "name": "Stop and Error3"
-    },
-    {
-      "parameters": {
-        "path": "64347581-c5ed-45d6-9151-309c7b04ace6",
-        "responseMode": "responseNode",
-        "options": {
-          "allowedOrigins": "http://127.0.0.1:5500"
-        }
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        1232,
-        768
-      ],
-      "id": "9255b014-2e96-485f-bf41-31af674fbbae",
-      "name": "Webhook",
-      "webhookId": "64347581-c5ed-45d6-9151-309c7b04ace6"
-    },
-    {
-      "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE",
-          "mode": "list",
-          "cachedResultName": "vacantes_n8n",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Hoja 1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE/edit#gid=0"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.7,
-      "position": [
-        1456,
-        768
-      ],
-      "id": "1a994003-c462-4ddb-979f-974fe09107b6",
-      "name": "Get row(s) in sheet",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "wNlbyBvBZ0IoYqta",
-          "name": "Google Sheets account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "respondWith": "text",
-        "responseBody": "={{ $input.all().map(item => item.json.titulo).join('\\n') }}",
-        "options": {
-          "responseHeaders": {
-            "entries": [
-              {
-                "name": "Access-Control-Allow-Origin",
-                "value": "http://127.0.0.1:5500"
-              },
-              {
-                "name": "Access-Control-Allow-Methods",
-                "value": "GET, OPTIONS"
-              },
-              {
-                "name": "Access-Control-Allow-Headers",
-                "value": "Content-Type"
-              }
-            ]
-          }
-        }
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.5,
-      "position": [
-        1664,
-        768
-      ],
-      "id": "e93942c6-4097-48ae-975d-12b56fca4038",
-      "name": "Respond to Webhook"
     },
     {
       "parameters": {
@@ -913,10 +684,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -416,
-        368
+        256,
+        992
       ],
-      "id": "2f88fcd2-03d3-4dd3-b984-7718750efff4",
+      "id": "c8872ff5-5645-444e-81b4-18acccf7bc73",
       "name": "es una hoja de vida?"
     },
     {
@@ -938,7 +709,7 @@
             {
               "id": "000a5e19-aba0-4266-a059-c421c4c52b6a",
               "name": "Correo",
-              "value": "={{ $('Webhook1').item.json.body.correo.trim().toLowerCase()}}",
+              "value": "={{ $('Webhook1').item.json.body.correo.trim().toLowerCase() }}",
               "type": "string"
             },
             {
@@ -950,7 +721,7 @@
             {
               "id": "4ae0444f-4cad-411a-bfc3-2129017717b6",
               "name": "Vacante",
-              "value": "={{ $('Webhook1').item.json.body.vacante.trim()}}",
+              "value": "={{ $('Webhook1').item.json.body.vacante.trim() }}",
               "type": "string"
             },
             {
@@ -1003,15 +774,16 @@
             }
           ]
         },
+        "includeOtherFields": true,
         "options": {}
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1152,
-        368
+        1824,
+        992
       ],
-      "id": "9609e06c-5bb9-4dd5-999a-ae4aeb75f794",
+      "id": "45c3906d-c368-4193-bf23-56053cee330d",
       "name": "preparar los datos para el google sheet"
     }
   ],
@@ -1022,17 +794,6 @@
         [
           {
             "node": "llegaron los datos?1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "revision prioritaria1": {
-      "main": [
-        [
-          {
-            "node": "preparar los datos para el google sheet",
             "type": "main",
             "index": 0
           }
@@ -1051,6 +812,24 @@
         [
           {
             "node": "error no llegaron los datos1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "es pdf?1": {
+      "main": [
+        [
+          {
+            "node": "extraer documento PDF1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error2",
             "type": "main",
             "index": 0
           }
@@ -1079,65 +858,47 @@
         ]
       ]
     },
+    "es una hoja de vida?": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Code in JavaScript1": {
       "main": [
         [
           {
-            "node": "tipo de vacante1",
+            "node": "Buscar vacantes en Google Sheets",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "tipo de vacante1": {
+    "Buscar vacantes en Google Sheets": {
       "main": [
         [
           {
-            "node": "requisitos para backend1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "requisitos para data analys1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "requisitos para frontend1",
+            "node": "Obtener requisitos de la vacante",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "requisitos para backend1": {
-      "main": [
-        [
-          {
-            "node": "comparar score1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "requisitos para data analys1": {
-      "main": [
-        [
-          {
-            "node": "comparar score1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "requisitos para frontend1": {
+    "Obtener requisitos de la vacante": {
       "main": [
         [
           {
@@ -1184,6 +945,17 @@
         ]
       ]
     },
+    "revision prioritaria1": {
+      "main": [
+        [
+          {
+            "node": "preparar los datos para el google sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "revision manual1": {
       "main": [
         [
@@ -1206,80 +978,22 @@
         ]
       ]
     },
-    "Append row in sheet1": {
-      "main": [
-        [
-          {
-            "node": "Send a message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "es pdf?1": {
-      "main": [
-        [
-          {
-            "node": "extraer documento PDF1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Stop and Error2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "Get row(s) in sheet",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get row(s) in sheet": {
-      "main": [
-        [
-          {
-            "node": "Respond to Webhook",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "es una hoja de vida?": {
-      "main": [
-        [
-          {
-            "node": "Code in JavaScript1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Stop and Error3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "preparar los datos para el google sheet": {
       "main": [
         [
           {
             "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
             "type": "main",
             "index": 0
           }
@@ -1292,11 +1006,12 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "039db0b3-8c35-454e-a4be-427a5937fc62",
+  "versionId": "acf8336d-c223-4ab4-aa12-397f5f213f9b",
   "meta": {
+    "templateCredsSetupCompleted": true,
     "instanceId": "a05a0e5201cc1de02fff6edf3c582719ceee44a5a534126307cdf5429bda8bd0"
   },
   "nodeGroups": [],
-  "id": "zeuxJRAx6UkpcTPp",
+  "id": "hbOOorrLrxGfkHxb",
   "tags": []
 }
