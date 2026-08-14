@@ -1,0 +1,646 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        -80
+      ],
+      "id": "67153fd7-6b3f-48e2-9f8d-8a705dc9c3d3",
+      "name": "Telegram Trigger",
+      "webhookId": "6d54190f-d442-4baa-a160-7cc5d5b1e0c1",
+      "credentials": {
+        "telegramApi": {
+          "id": "54onk4GuRpJXiLcm",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Eres un asistente de Recursos Humanos.\n\nTu función es ayudar al personal de RRHH a consultar y gestionar\nla información de los candidatos almacenada en Google Sheets.\n\nLos candidatos se identifican mediante el campo ID_candidato.\n\nTienes acceso a una herramienta de Google Sheets que contiene\nla información de los candidatos.\n\nREGLAS:\n\n1. Cuando RRHH solicite información sobre un candidato, utiliza\n   la herramienta de Google Sheets para buscarlo mediante su\n   ID_candidato.\n\n2. Cuando RRHH solicite consultar candidatos, utiliza Google Sheets\n   para obtener la información necesaria.\n\n3. Cuando RRHH solicite cambiar el estado de un candidato, primero\n   identifica al candidato mediante su ID_candidato y verifica\n   que exista.\n\n4. Los estados permitidos para un candidato son:\n   - Pendiente de revisión\n   - Aceptado\n   - Rechazado\n\n5. No inventes información sobre ningún candidato.\n\n6. No modifiques información que RRHH no haya solicitado modificar.\n\n7. Si un candidato no existe, informa a RRHH y no realices ninguna\n   modificación.\n\n8. Después de realizar una modificación correctamente, informa a\n   RRHH que la operación fue realizada.\n\nIMPORTANTE SOBRE EL TIPO DE SOLICITUD:\n\nAntes de responder, identifica qué tipo de acción está solicitando RRHH.\n\nSi RRHH solamente quiere consultar, buscar, visualizar o conocer\ninformación de uno o varios candidatos, la acción es:\n\nCONSULTA\n\nSi RRHH solicita aceptar o rechazar un candidato, o cambiar su estado,\nla acción es:\n\nCAMBIO_ESTADO\n\nTu respuesta SIEMPRE debe comenzar exactamente con una de estas dos etiquetas:\n\n[ACCION: CONSULTA]\n\no\n\n[ACCION: CAMBIO_ESTADO]\n\nDespués de la etiqueta, escribe la respuesta normal para RRHH.\n\nEjemplos:\n\n[ACCION: CONSULTA]\nEl candidato TF-123 tiene estado Aceptado y cuenta con 3 años de experiencia.\n\n[ACCION: CAMBIO_ESTADO]\nEl candidato TF-123 ha sido aceptado correctamente y su estado fue actualizado.\nResponde siempre de manera clara y breve.\n{{ $json.message.text }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        288,
+        -80
+      ],
+      "id": "fe00154c-4fcb-4aa6-9711-05fbbc797b38",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.6-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        144
+      ],
+      "id": "00bb27d5-b78e-4404-bcc7-c2c05fe0cfd6",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "OKPAxwR5gHxZ5pYa",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Consulta la información de los candidatos almacenada en Google Sheets.\n\nUtiliza esta herramienta cuando RRHH solicite información sobre\nuno o varios candidatos.\n\nLos candidatos se identifican mediante el campo ID_candidato.\n\nUtiliza esta herramienta para buscar candidatos y consultar sus\ndatos, incluyendo nombre, correo, vacante, experiencia, score,\nestado y demás información disponible.\n\nNo inventes información que no esté en Google Sheets.",
+        "documentId": {
+          "__rl": true,
+          "value": "1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA",
+          "mode": "list",
+          "cachedResultName": "proyecto n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        352,
+        144
+      ],
+      "id": "9ecf299e-7732-484d-b1c6-017ab187527e",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SXXUxiDk9MSwyKux",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Actualiza el estado de un candidato en Google Sheets.\n\nUtiliza esta herramienta cuando RRHH solicite aceptar o rechazar\nun candidato.\n\nID_candidato:\nEs el identificador único del candidato que se debe modificar.\n\nEstado:\nDebe ser únicamente uno de estos valores:\n- Aceptado\n- Rechazado\n\nAntes de actualizar, asegúrate de que el ID_candidato corresponda\na un candidato existente.\n\nNo modifiques ninguna otra columna.",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "=1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Estado": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Estado', ``, 'string') }}",
+            "ID_candidato": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('ID_candidato__using_to_match_', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "ID_candidato"
+          ],
+          "schema": [
+            {
+              "id": "ID_candidato",
+              "displayName": "ID_candidato",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Vacante",
+              "displayName": "Vacante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Experiencia",
+              "displayName": "Experiencia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Habilidades",
+              "displayName": "Habilidades",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nivel_academico",
+              "displayName": "Nivel_academico",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Score_compatibilidad",
+              "displayName": "Score_compatibilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha_Postulacion",
+              "displayName": "Fecha_Postulacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Observaciones_IA",
+              "displayName": "Observaciones_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Revision_RRHH",
+              "displayName": "Revision_RRHH",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        480,
+        144
+      ],
+      "id": "010a646a-3b59-4107-aeab-0e63833516e2",
+      "name": "Update row in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SXXUxiDk9MSwyKux",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const datos= $(\"Telegram Trigger\").first().json.message.text\n\nconst id= datos.match(/TF-\\d+-\\d+/)\n\nif (!id){\n  throw new Error(\"no se encontro candidato con esa ID en el mensaje de telegram\")\n}\n\nconst idbuscado= id[0].trim()\n\nconst candidato = $input.all().find(item => {\n  const idHoja = String(item.json.ID_candidato ?? '').trim();\n  return idHoja === idbuscado;\n});\n\nif (!candidato) {\n  throw new Error(`No se encontró el candidato ${idbuscado} en Google Sheets`);\n}\n\nreturn [candidato];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        -80
+      ],
+      "id": "ed2d0544-4249-4e8c-9f9f-54d65791d255",
+      "name": "agarra unicamente el candidato del mensaje"
+    },
+    {
+      "parameters": {
+        "jsCode": "const respuesta = $json.output;\n\nif (!respuesta) {\n  throw new Error(\"El AI Agent no devolvió una respuesta\");\n}\n\nlet tipoAccion;\n\nif (respuesta.includes(\"[ACCION: CONSULTA]\")) {\n  tipoAccion = \"CONSULTA\";\n} else if (respuesta.includes(\"[ACCION: CAMBIO_ESTADO]\")) {\n  tipoAccion = \"CAMBIO_ESTADO\";\n} else {\n  throw new Error(\"El AI Agent no indicó un tipo de acción válido\");\n}\n\nconst respuestaLimpia = respuesta\n  .replace(\"[ACCION: CONSULTA]\", \"\")\n  .replace(\"[ACCION: CAMBIO_ESTADO]\", \"\")\n  .trim();\n\nreturn [\n  {\n    json: {\n      tipo_accion: tipoAccion,\n      respuesta: respuestaLimpia\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        688,
+        -80
+      ],
+      "id": "e715ab05-ad68-4e3e-b0fc-4a77599a0125",
+      "name": "identificar tipo de solicitud"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.respuesta }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1120,
+        -176
+      ],
+      "id": "9d1d87b6-e9b7-44bf-b0f6-a6a6c4622508",
+      "name": "mensaje de una consulta",
+      "webhookId": "2d1e6a03-44f8-4197-b86b-458253076a86",
+      "credentials": {
+        "telegramApi": {
+          "id": "54onk4GuRpJXiLcm",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "da342899-9166-436f-b209-22aeb983c0f2",
+              "leftValue": "={{ $json.tipo_accion }}",
+              "rightValue": "CONSULTA",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        912,
+        -80
+      ],
+      "id": "5778139e-5737-4036-98f6-0e97522ab341",
+      "name": "tipo de estado"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA",
+          "mode": "list",
+          "cachedResultName": "proyecto n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": []
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1136,
+        0
+      ],
+      "id": "61f43496-c48e-4cf2-b53a-b07b9f29b9fb",
+      "name": "tabla actualizada",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SXXUxiDk9MSwyKux",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "5a08181d-9fae-456d-b268-08aeefa8ccdf",
+              "leftValue": "={{ $json.Estado }}",
+              "rightValue": "Aceptado",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1584,
+        -80
+      ],
+      "id": "8809756c-7212-4a17-817d-1d98a5445f1e",
+      "name": "aceptada o rechazada?"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Correo }}",
+        "subject": "=felicidades {{ $json.Nombre }} ",
+        "message": "=<div style=\"font-family: Arial, Helvetica, sans-serif; background-color: #f4f7fb; padding: 30px;\">\n\n  <div style=\"max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 12px; overflow: hidden;\">\n\n    <div style=\"background-color: #2563eb; padding: 25px; text-align: center;\">\n      <h1 style=\"color: #ffffff; margin: 0; font-size: 26px;\">\n        ¡Felicitaciones! 🎉\n      </h1>\n      <p style=\"color: #dbeafe; margin: 8px 0 0;\">\n        Proceso de selección\n      </p>\n    </div>\n\n    <div style=\"padding: 30px;\">\n\n      <h2 style=\"color: #1e293b; margin-top: 0;\">\n        Hola, {{ $json.Nombre }}\n      </h2>\n\n      <p style=\"color: #475569; font-size: 16px; line-height: 1.6;\">\n        Nos complace informarte que tu perfil ha sido\n        <strong style=\"color: #16a34a;\">aceptado</strong>\n        en nuestro proceso de selección.\n      </p>\n\n      <div style=\"background-color: #f0fdf4; border-left: 5px solid #22c55e; padding: 18px; margin: 25px 0; border-radius: 6px;\">\n        <p style=\"margin: 0; color: #166534; font-size: 16px;\">\n          <strong>Estado de la candidatura:</strong>\n          Aceptado\n        </p>\n      </div>\n\n      <p style=\"color: #475569; font-size: 15px; line-height: 1.6;\">\n        Después de revisar tu perfil y la información proporcionada,\n        nuestro equipo de Recursos Humanos ha determinado que tu\n        candidatura cumple con los criterios establecidos para continuar\n        en el proceso.\n      </p>\n\n      <p style=\"color: #475569; font-size: 15px; line-height: 1.6;\">\n        Nuestro equipo se pondrá en contacto contigo para informarte\n        sobre los siguientes pasos del proceso.\n      </p>\n\n      <div style=\"text-align: center; margin: 30px 0;\">\n        <div style=\"display: inline-block; background-color: #2563eb; color: #ffffff; padding: 12px 24px; border-radius: 6px; font-size: 15px;\">\n          Candidatura aceptada\n        </div>\n      </div>\n\n      <p style=\"color: #64748b; font-size: 14px; line-height: 1.5;\">\n        Si tienes alguna pregunta, puedes comunicarte con nuestro equipo\n        de Recursos Humanos.\n      </p>\n\n      <p style=\"color: #475569; margin-top: 25px;\">\n        Saludos cordiales,<br>\n        <strong>Equipo de Recursos Humanos</strong>\n      </p>\n\n    </div>\n\n    <div style=\"background-color: #f8fafc; padding: 18px; text-align: center;\">\n      <p style=\"color: #94a3b8; font-size: 12px; margin: 0;\">\n        Este mensaje fue generado automáticamente por nuestro sistema\n        de gestión de candidatos.\n      </p>\n    </div>\n\n  </div>\n\n</div>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1808,
+        -176
+      ],
+      "id": "00ed429e-9c5b-47ca-9df7-a55abaa39fec",
+      "name": "mensaje al correo de aceptada",
+      "webhookId": "9eab2f37-54b7-4810-bfb6-55a3efb09099",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mO0SX64ZzYpZRaJo",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Correo }}",
+        "subject": "=Lo sentimos candidato {{$json.Nombre}}",
+        "message": "=<div style=\"font-family: Arial, Helvetica, sans-serif; background-color: #f4f7fb; padding: 30px;\">    <div style=\"max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 12px; overflow: hidden;\">      <div style=\"background-color: #dc2626; padding: 25px; text-align: center;\">       <h1 style=\"color: #ffffff; margin: 0;\">         Actualización de tu candidatura       </h1>     </div>      <div style=\"padding: 30px;\">        <h2 style=\"color: #1e293b;\">         Hola, {{ $json.Nombre }}       </h2>        <p style=\"color: #475569; font-size: 16px; line-height: 1.6;\">         Agradecemos sinceramente tu interés en nuestra vacante y el tiempo         dedicado durante el proceso de selección.       </p>        <div style=\"background-color: #fef2f2; border-left: 5px solid #dc2626; padding: 18px; margin: 25px 0;\">         <p style=\"margin: 0; color: #991b1b;\">           <strong>Estado de la candidatura:</strong> Rechazado         </p>       </div>        <p style=\"color: #475569; font-size: 15px; line-height: 1.6;\">         Después de revisar tu perfil y compararlo con los criterios         establecidos para la vacante, en esta ocasión hemos decidido         no continuar con tu candidatura.       </p>        <p style=\"color: #475569; font-size: 15px; line-height: 1.6;\">         Agradecemos nuevamente tu participación y te invitamos a estar         atento a futuras oportunidades que puedan ajustarse a tu perfil.       </p>        <p style=\"color: #475569; margin-top: 25px;\">         Saludos cordiales,<br>         <strong>Equipo de Recursos Humanos</strong>       </p>      </div>      <div style=\"background-color: #f8fafc; padding: 18px; text-align: center;\">       <p style=\"color: #94a3b8; font-size: 12px;\">         Este mensaje fue generado automáticamente por nuestro sistema         de gestión de candidatos.       </p>     </div>    </div>  </div>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1808,
+        16
+      ],
+      "id": "d54ea533-f1e6-47fb-b08f-8307ffe852e6",
+      "name": "mensaje al correo de rechazada",
+      "webhookId": "c5f6b540-e3ac-4e17-90e7-70357281d683",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mO0SX64ZzYpZRaJo",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=📋 Actualización de candidato\n\n👤 Candidato: {{ $('agarra unicamente el candidato del mensaje').item.json.Nombre }}\n🆔 ID: {{ $('agarra unicamente el candidato del mensaje').item.json.ID_candidato }}\n📌 Estado:{{ $('agarra unicamente el candidato del mensaje').item.json.Estado }}\n\n📧 Se ha enviado el correo de notificación a:\n{{ $('agarra unicamente el candidato del mensaje').item.json.Correo }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2032,
+        -80
+      ],
+      "id": "55d516ef-3317-4b3b-8f06-b0facd93097f",
+      "name": "mandar mensaje de  aviso de accion",
+      "webhookId": "62a1e837-effd-48db-85d5-ba60a5b3c24a",
+      "credentials": {
+        "telegramApi": {
+          "id": "54onk4GuRpJXiLcm",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "identificar tipo de solicitud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "agarra unicamente el candidato del mensaje": {
+      "main": [
+        [
+          {
+            "node": "aceptada o rechazada?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "identificar tipo de solicitud": {
+      "main": [
+        [
+          {
+            "node": "tipo de estado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tipo de estado": {
+      "main": [
+        [
+          {
+            "node": "mensaje de una consulta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "tabla actualizada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tabla actualizada": {
+      "main": [
+        [
+          {
+            "node": "agarra unicamente el candidato del mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "aceptada o rechazada?": {
+      "main": [
+        [
+          {
+            "node": "mensaje al correo de aceptada",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "mensaje al correo de rechazada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mensaje al correo de aceptada": {
+      "main": [
+        [
+          {
+            "node": "mandar mensaje de  aviso de accion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mensaje al correo de rechazada": {
+      "main": [
+        [
+          {
+            "node": "mandar mensaje de  aviso de accion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d6bddb54bb2d33a0b901720b7140b04f001ec39342e5581150a4b607fff19b33"
+  }
+}
