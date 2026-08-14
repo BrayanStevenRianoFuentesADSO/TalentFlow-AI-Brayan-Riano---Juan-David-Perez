@@ -1,0 +1,110 @@
+{
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "fa240e9d-2775-4014-b66f-8311fa654324",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "e8178d19-d1e0-451e-b8e5-18ab3d4ff8e7",
+        "name": "Webhook",
+        "webhookId": "fa240e9d-2775-4014-b66f-8311fa654324"
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE/edit?gid=0#gid=0",
+            "mode": "url"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Hoja 1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "titulo": "={{ $json.body.titulo }}",
+              "year_experiencia": "={{ $json.body.year_experiencia }}",
+              "hab_requeridas": "={{ $json.body.hab_requeridas }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "titulo",
+                "displayName": "titulo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "hab_requeridas",
+                "displayName": "hab_requeridas",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "year_experiencia",
+                "displayName": "year_experiencia",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          208,
+          0
+        ],
+        "id": "f4efa389-ee35-46d8-97bb-f9702ee50a0f",
+        "name": "Append row in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "wNlbyBvBZ0IoYqta",
+            "name": "Google Sheets account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Append row in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "pinData": {},
+    "meta": {
+      "templateCredsSetupCompleted": true,
+      "instanceId": "a05a0e5201cc1de02fff6edf3c582719ceee44a5a534126307cdf5429bda8bd0"
+    }
+  }
