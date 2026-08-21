@@ -1,0 +1,1334 @@
+{
+  "name": "TalentFlow - Vacantes dinámicas",
+  "nodes": [
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Correo }}",
+        "subject": "Postulacion Aprobada",
+        "message": "=<div style=\"margin:0; padding:0; background-color:#f4f7fb; font-family:Arial, Helvetica, sans-serif; color:#1f2937;\"><div style=\"max-width:650px; margin:0 auto; padding:40px 20px;\"><div style=\"background-color:#172554; border-radius:14px 14px 0 0; padding:28px 35px; text-align:center;\"><div style=\"font-size:28px; font-weight:bold; color:#ffffff; letter-spacing:0.5px;\">Talent<span style=\"color:#38bdf8;\">Flow</span></div><div style=\"margin-top:8px; font-size:13px; color:#bfdbfe; letter-spacing:1px;\">GESTIÓN DE TALENTO</div></div><div style=\"background-color:#ffffff; padding:40px 35px; border-radius:0 0 14px 14px; box-shadow:0 5px 20px rgba(15, 23, 42, 0.08);\"><p style=\"font-size:16px; margin:0 0 20px 0; color:#374151;\">Hola <strong style=\"color:#172554;\">{{ $json.Nombre }}</strong>,</p><h1 style=\"font-size:24px; color:#172554; margin:0 0 18px 0;\">¡Tu postulación ha sido registrada!</h1><p style=\"font-size:15px; line-height:1.7; color:#4b5563; margin:0 0 25px 0;\">Te informamos que hemos recibido correctamente tu postulación. A continuación encontrarás los detalles asociados a tu proceso:</p><div style=\"border:1px solid #e5e7eb; border-radius:10px; overflow:hidden; margin-bottom:28px;\"><div style=\"background-color:#f8fafc; padding:16px 20px; border-bottom:1px solid #e5e7eb;\"><span style=\"font-size:14px; font-weight:bold; color:#172554;\">DETALLES DE LA POSTULACIÓN</span></div><div style=\"padding:18px 20px; border-bottom:1px solid #f1f5f9;\"><div style=\"font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;\">Vacante</div><div style=\"font-size:17px; font-weight:bold; color:#172554;\">{{ $json.Vacante }}</div></div><div style=\"padding:18px 20px; border-bottom:1px solid #f1f5f9;\"><div style=\"font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;\">Fecha de postulación</div><div style=\"font-size:15px; color:#374151;\">{{ $json.Fecha_Postulacion }}</div></div><div style=\"padding:18px 20px;\"><div style=\"font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;\">Estado actual</div><span style=\"display:inline-block; background-color:#e0f2fe; color:#0369a1; padding:7px 14px; border-radius:20px; font-size:13px; font-weight:bold;\">{{ $json.Estado }}</span></div></div><div style=\"background-color:#f8fafc; border-left:4px solid #38bdf8; padding:18px 20px; margin-bottom:28px; border-radius:0 6px 6px 0;\"><p style=\"font-size:14px; line-height:1.7; color:#4b5563; margin:0;\">Tu información ha sido registrada en nuestro sistema y será evaluada de acuerdo con los criterios establecidos para la vacante seleccionada.</p></div><p style=\"font-size:15px; line-height:1.7; color:#4b5563; margin:0 0 10px 0;\">Te recomendamos estar atento a tu correo electrónico para recibir cualquier actualización relacionada con tu proceso de selección.</p><p style=\"font-size:15px; color:#374151; margin:25px 0 0 0;\">Gracias por confiar en <strong style=\"color:#172554;\">Talent<span style=\"color:#38a9df;\">Flow</span></strong>.</p><div style=\"height:1px; background-color:#e5e7eb; margin:35px 0 20px 0;\"></div><div style=\"text-align:center;\"><div style=\"font-size:18px; font-weight:bold; color:#172554;\">Talent<span style=\"color:#38a9df;\">Flow</span></div><p style=\"font-size:12px; color:#9ca3af; line-height:1.5; margin:8px 0 0 0;\">Plataforma de gestión y selección de talento</p><p style=\"font-size:11px; color:#b0b7c3; margin:15px 0 0 0;\">Este correo fue generado automáticamente. Por favor, no respondas directamente a este mensaje.</p></div></div></div>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1760,
+        256
+      ],
+      "id": "e322d586-0bc7-4300-a104-ea274747c676",
+      "name": "Send a message",
+      "webhookId": "f80995e7-4952-4908-bf98-5a0153d916e5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ySD9VgbyJJbBKBbQ",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "postulacion",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1504,
+        352
+      ],
+      "id": "b615d08e-3f31-4e33-8850-2fd1b2a6e378",
+      "name": "Webhook1",
+      "webhookId": "224ba5cd-558c-41ee-ac46-c065cf372214"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "313b000d-ec0a-4be8-8e79-c00fa2618a5c",
+              "name": "recomendacion",
+              "value": "revision prioritaria",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        -80
+      ],
+      "id": "2a75bb07-6972-44d9-8f15-df81e2c1bff3",
+      "name": "revision prioritaria1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3a7d2451-17fa-4ffd-a9bd-560bd5e2598a",
+              "leftValue": "={{ $json.body.nombre }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "af722b29-28bc-4ebf-a714-6e1131cdeda3",
+              "leftValue": "={{ $json.body.correo }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "4c085b7d-5140-4cfc-a57b-baebb2aa1a6c",
+              "leftValue": "={{ $json.body.telefono }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "9b4e0341-1a3a-4c0d-baab-dda191f01c28",
+              "leftValue": "={{ $json.body.vacante }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "bdc01d14-01e0-4e47-8b25-a1077986a3cf",
+              "leftValue": "={{ $json.body.experiencia }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "8cc19292-64e7-4958-abc8-4bc81c1c5125",
+              "leftValue": "={{ $json.body.habilidades }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "5b94c927-e8dd-4b4f-b4e8-019e303469c1",
+              "leftValue": "={{ $json.body.tratamiento_datos }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1280,
+        352
+      ],
+      "id": "8e14e982-3308-4277-a47e-241e8f62ce17",
+      "name": "llegaron los datos?1"
+    },
+    {
+      "parameters": {
+        "errorMessage": "se presento un error por favor vuelva a intentarlo"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -1056,
+        448
+      ],
+      "id": "aeb8b364-d947-42c4-82c8-14960a6e228e",
+      "name": "error no llegaron los datos1"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "Hojavida",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -832,
+        160
+      ],
+      "id": "656de3b6-1257-481a-8744-6533bb57f01a",
+      "name": "extraer documento PDF1"
+    },
+    {
+      "parameters": {
+        "resource": "document",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.5-flash"
+        },
+        "text": "=Analiza el siguiente documento.\n\nPRIMERO, determina si el documento corresponde realmente a una hoja de vida (CV).\n\nConsidera que es una hoja de vida si contiene información propia de un perfil profesional o laboral, como por ejemplo:\n- Datos personales o de contacto.\n- Perfil profesional.\n- Formación académica.\n- Experiencia laboral.\n- Habilidades o competencias.\n- Idiomas.\n- Información relacionada con la trayectoria profesional.\n\nSi el documento es una factura, certificado, recibo, contrato, documento académico independiente, manual, informe, imagen/documento sin información profesional o cualquier otro documento que no corresponda a una hoja de vida, considera que NO es una hoja de vida.\n\nDevuelve el resultado en el campo:\n\n\"es_hoja_de_vida\": true\n\nsi el documento corresponde a una hoja de vida.\n\nDevuelve:\n\n\"es_hoja_de_vida\": false\n\nsi el documento NO corresponde a una hoja de vida.\n\nIMPORTANTE:\n- No determines que es una hoja de vida solamente porque el documento sea un PDF.\n- Analiza el contenido del documento.\n- No inventes información.\n- Si tienes dudas razonables sobre si es una hoja de vida, devuelve false.\n\nDespués, si el documento es una hoja de vida, extrae UNICAMENTE información que aparezca explícitamente en el CV.\n\nSi una categoría no aparece, devuelve un arreglo vacío [].\n\nIdentifica:\n\n- datos_personales\n- perfil\n- formaciones\n- experiencias\n- habilidades\n- competencias\n- idiomas\n\nDevuelve UNICAMENTE un objeto JSON válido.\n\nNo utilices Markdown.\nNo escribas ```json.\nNo agregues explicaciones antes o después del JSON.\nLa estructura de respuesta debe contener exactamente los siguientes campos:\n\n{\n  \"es_hoja_de_vida\": [true o false según el contenido real del documento],\n  \"datos_personales\": {},\n  \"perfil\": \"\",\n  \"formaciones\": [],\n  \"experiencias\": [],\n  \"habilidades\": [],\n  \"competencias\": [],\n  \"idiomas\": [],\n  \"observacion_IA\": \"\"\n}\n\nIMPORTANTE SOBRE \"es_hoja_de_vida\":\n\nEl valor de \"es_hoja_de_vida\" DEBE ser booleano.\n\nUsa true ÚNICAMENTE cuando el contenido analizado corresponda realmente a una hoja de vida/CV.\n\nUsa false cuando el documento corresponda a cualquier otro tipo de documento, por ejemplo:\n- factura\n- recibo\n- certificado\n- contrato\n- manual\n- informe\n- documento académico que no sea una hoja de vida\n- documento legal\n- documento empresarial\n- cualquier documento que no describa la trayectoria profesional de una persona.\n\nNO determines que es una hoja de vida solamente porque:\n- el archivo sea PDF\n- tenga el nombre \"hoja de vida\"\n- tenga datos personales\n- tenga una fotografía\n- tenga texto relacionado con una persona.\n\nDebes analizar el CONTENIDO completo del documento.\n\nSi el documento no contiene información suficiente para identificar claramente una trayectoria profesional, formación, experiencia laboral o perfil profesional, devuelve:\n\n\"es_hoja_de_vida\": false\n\nNo inventes información.\n\nLa observación debe resumir:\n- principales conocimientos o habilidades técnicas\n- formación relevante\n- experiencia relevante\n- fortalezas o competencias destacables\n\nNo inventes información.\nNo menciones requisitos de una vacante que no aparezcan en el CV.\nNo hagas suposiciones.\n\nDevuelve la observación en el campo:\n\n\"observacion_IA\": \"\"\n\nDOCUMENTO:\n\n{{ $json.text }}",
+        "inputType": "binary",
+        "binaryPropertyName": "",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        -608,
+        160
+      ],
+      "id": "7cbe61ce-ab02-44cd-90ad-a5e1bb83d2bc",
+      "name": "analizando del documento1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CX4VpxtHxGqnlYRO",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const texto = $input.first().json.content.parts[0].text;\nconst datos = JSON.parse(texto);\nconst webhook = $('Webhook1').first().json.body;\nconst vacante = webhook.vacante;\nconst experiencia = webhook.experiencia;\nconst formaciones = datos.formaciones || [];\n\nconst niveles = [\n  { palabras: ['doctorado'], prioridad: 6 },\n  { palabras: ['maestría', 'maestria', 'master'], prioridad: 5 },\n  { palabras: ['universitario', 'universidad', 'pregrado', 'licenciatura'], prioridad: 4 },\n  { palabras: ['tecnología', 'tecnologia', 'tecnólogo', 'tecnologo'], prioridad: 3 },\n  { palabras: ['técnico', 'tecnico'], prioridad: 2 },\n  { palabras: ['bachillerato', 'bachiller'], prioridad: 1 }\n];\n\nlet nivelEducativo = 'No especificado';\nlet prioridadMayor = 0;\n\nfor (const formacion of formaciones) {\n  const textoFormacion = String(formacion.titulo || '').toLowerCase();\n  for (const nivel of niveles) {\n    const encontrado = nivel.palabras.some(palabra => textoFormacion.includes(palabra));\n    if (encontrado && nivel.prioridad > prioridadMayor) {\n      nivelEducativo = formacion.titulo;\n      prioridadMayor = nivel.prioridad;\n    }\n  }\n}\n\nconst idCandidato = 'TF-' + $now.toFormat('yyyyMMddHHmmss') + '-' + Math.floor(Math.random() * 10000);\n\nreturn [{\n  json: {\n    ID_candidato: idCandidato,\n    ...datos,\n    nivel_Educativo: nivelEducativo,\n    vacante: vacante,\n    experiencia: experiencia\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        64
+      ],
+      "id": "294ec57d-602b-4b58-ac63-31b8b7ee0f39",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE",
+          "mode": "list",
+          "cachedResultName": "vacantes_n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KGVCOKPqZa60F6Zly4GtlfGlHzwBlzO_LXWsVuutmaE/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        64,
+        64
+      ],
+      "id": "98f14bae-29bb-4ebf-8300-76fd22c942cf",
+      "name": "Buscar vacantes en Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "91XNlZ26e9eir9yP",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const candidato = $('Code in JavaScript1').first().json;\nconst filas = $input.all().map(item => item.json);\n\nconst vacanteSeleccionada = String(candidato.vacante || '').trim().toLowerCase();\n\nconst vacanteEncontrada = filas.find(fila =>\n  String(fila.titulo || '').trim().toLowerCase() === vacanteSeleccionada\n);\n\nif (!vacanteEncontrada) {\n  throw new Error(`No se encontró la vacante: ${candidato.vacante}`);\n}\n\nconst requisitos = String(vacanteEncontrada.hab_requeridas || '')\n  .split(',')\n  .map(h => h.trim())\n  .filter(Boolean);\n\nconst experienciaMinima = Number(vacanteEncontrada.year_experiencia || 0);\n\nreturn [{\n  json: {\n    ...candidato,\n    vacante_ref: vacanteEncontrada.titulo,\n    req_habilidades: requisitos,\n    exp_minima: experienciaMinima\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        64
+      ],
+      "id": "520f3feb-96b6-4c90-a29c-f73a47282412",
+      "name": "Obtener requisitos de la vacante"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first().json;\n\nconst habilidades = Array.isArray(item.habilidades)\n  ? item.habilidades\n  : String(item.habilidades || '').split(',').map(h => h.trim()).filter(Boolean);\n\nconst experiencia = Number(item.experiencia || 0);\nconst requisitos = Array.isArray(item.req_habilidades) ? item.req_habilidades : [];\nconst expMinima = Number(item.exp_minima || 0);\n\nconst normalizar = texto => String(texto).trim().toLowerCase();\n\nconst habilidadesNormalizadas = habilidades.map(normalizar);\nconst requisitosNormalizados = requisitos.map(normalizar);\n\nconst habilidadesCoincidentes = requisitosNormalizados.filter(req =>\n  habilidadesNormalizadas.some(habilidad => habilidad === req)\n);\n\nlet porcentajeHabilidades = 0;\n\nif (requisitosNormalizados.length > 0) {\n  porcentajeHabilidades = habilidadesCoincidentes.length / requisitosNormalizados.length;\n}\n\nconst puntosHabilidades = porcentajeHabilidades * 70;\nconst puntosExperiencia = experiencia >= expMinima ? 30 : 0;\nconst score = Math.round(puntosHabilidades + puntosExperiencia);\n\nlet clasificacion;\n\nif (score >= 80) {\n  clasificacion = 'Alta';\n}  else {\n  clasificacion = 'Baja';\n}\n\nreturn [{\n  json: {\n    ...item,\n    habilidades_coincidentes: habilidadesCoincidentes,\n    total_requisitos: requisitosNormalizados.length,\n    requisitos_cumplidos: habilidadesCoincidentes.length,\n    puntos_habilidades: Math.round(puntosHabilidades),\n    puntos_experiencia: puntosExperiencia,\n    score: score,\n    clasificacion: clasificacion\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        512,
+        64
+      ],
+      "id": "cff8bf85-6ad8-49e1-a4da-cbb08b186ba2",
+      "name": "comparar score1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.clasificacion }}",
+                    "rightValue": "Alta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "8f246279-f2c7-451d-aefa-3f758416566a"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Alta"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "be07c32c-4d18-4af9-812e-fee95170d76e",
+                    "leftValue": "={{ $json.clasificacion }}",
+                    "rightValue": "Baja",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Baja"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        736,
+        64
+      ],
+      "id": "2ac3cf91-b7c8-4ad1-b156-d709924aadd2",
+      "name": "tomar desicion de clasificacion1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "827a9205-d71a-4223-9913-79bfcb44b854",
+              "name": "recomendacion",
+              "value": "revision secundaria",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        208
+      ],
+      "id": "1b65250b-f037-4580-adc0-e3935e445e82",
+      "name": "revision secundaria1"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA",
+          "mode": "list",
+          "cachedResultName": "proyecto n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Hcb8Jr-_EVz39PXNikhc7BjuE77nu0JXGg4MABr9euA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_candidato": "={{ $json.ID_candidato }}",
+            "Nombre": "={{ $json.Nombre }}",
+            "Correo": "={{ $json.Correo }}",
+            "Telefono": "={{ $json.Telefono }}",
+            "Vacante": "={{ $json.Vacante }}",
+            "Experiencia": "={{ $json.Experiencia }}",
+            "Habilidades": "={{ $json.Habilidades }}",
+            "Nivel_academico": "={{ $json.Nivel_academico }}",
+            "Score_compatibilidad": "={{ $json.Score_compatibilidad }}",
+            "Estado": "={{ $json.Estado }}",
+            "Fecha_Postulacion": "={{ $json.Fecha_Postulacion }}",
+            "Observaciones_IA": "={{ $json.Observaciones_IA }}",
+            "Revision_RRHH": "={{ $json.Revision_RRHH }}",
+            "email_enviado": "True",
+            "fecha_envio_email": "="
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID_candidato",
+              "displayName": "ID_candidato",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Vacante",
+              "displayName": "Vacante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Experiencia",
+              "displayName": "Experiencia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Habilidades",
+              "displayName": "Habilidades",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nivel_academico",
+              "displayName": "Nivel_academico",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Score_compatibilidad",
+              "displayName": "Score_compatibilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha_Postulacion",
+              "displayName": "Fecha_Postulacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Observaciones_IA",
+              "displayName": "Observaciones_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Revision_RRHH",
+              "displayName": "Revision_RRHH",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email_enviado",
+              "displayName": "email_enviado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fecha_envio_email",
+              "displayName": "fecha_envio_email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prioridad",
+              "displayName": "prioridad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "es_hoja_de_vida",
+              "displayName": "es_hoja_de_vida",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "datos_personales",
+              "displayName": "datos_personales",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "perfil",
+              "displayName": "perfil",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "formaciones",
+              "displayName": "formaciones",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "experiencias",
+              "displayName": "experiencias",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "habilidades",
+              "displayName": "habilidades",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "competencias",
+              "displayName": "competencias",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "idiomas",
+              "displayName": "idiomas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "observacion_IA",
+              "displayName": "observacion_IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "nivel_Educativo",
+              "displayName": "nivel_Educativo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "vacante",
+              "displayName": "vacante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "experiencia",
+              "displayName": "experiencia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "vacante_ref",
+              "displayName": "vacante_ref",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "req_habilidades",
+              "displayName": "req_habilidades",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "exp_minima",
+              "displayName": "exp_minima",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "habilidades_coincidentes",
+              "displayName": "habilidades_coincidentes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "total_requisitos",
+              "displayName": "total_requisitos",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "requisitos_cumplidos",
+              "displayName": "requisitos_cumplidos",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "puntos_habilidades",
+              "displayName": "puntos_habilidades",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "puntos_experiencia",
+              "displayName": "puntos_experiencia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "score",
+              "displayName": "score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "clasificacion",
+              "displayName": "clasificacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "recomendacion",
+              "displayName": "recomendacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1536,
+        256
+      ],
+      "id": "ec863642-0116-476e-87c0-6ba0678e8153",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "91XNlZ26e9eir9yP",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a93d110e-dd69-4c46-a2c7-729d942bb715",
+              "leftValue": "={{ $binary.Hojavida.mimeType }}",
+              "rightValue": "application/pdf",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1056,
+        256
+      ],
+      "id": "3a7a3f2d-3615-40ca-860d-e6c774884600",
+      "name": "es pdf?1"
+    },
+    {
+      "parameters": {
+        "errorMessage": "ocurrio un error el documento que mandaste no es un PDF"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -832,
+        352
+      ],
+      "id": "f9580648-cc4f-4a5a-8312-080f48cc772b",
+      "name": "Stop and Error2"
+    },
+    {
+      "parameters": {
+        "errorMessage": "lo sentimos el documento que mandaste no es un CV vuelvelos a intentar y verifica si el PDF sea el correcto"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        256
+      ],
+      "id": "42282e04-157d-4350-82d1-17aa22a9d19e",
+      "name": "Stop and Error3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ffc9348e-44df-4067-b801-39573c9d1584",
+              "leftValue": "={{ JSON.parse($json.content.parts[0].text).es_hoja_de_vida }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -384,
+        160
+      ],
+      "id": "5bd00b10-336b-49cd-843e-3470cca5b382",
+      "name": "es una hoja de vida?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4feadeaf-81f9-4b4d-bbed-2a95ed95268f",
+              "name": "ID_candidato",
+              "value": "= {{ $json.ID_candidato }}",
+              "type": "string"
+            },
+            {
+              "id": "7573d1b2-4aca-4f3e-a61c-e5ab3472a916",
+              "name": "Nombre",
+              "value": "={{ $('Webhook1').item.json.body.nombre.trim().toLowerCase().replace(/\\b\\w/g, c => c.toUpperCase()) }}",
+              "type": "string"
+            },
+            {
+              "id": "000a5e19-aba0-4266-a059-c421c4c52b6a",
+              "name": "Correo",
+              "value": "={{ $('Webhook1').item.json.body.correo.trim().toLowerCase() }}",
+              "type": "string"
+            },
+            {
+              "id": "8ec252b3-8ce4-47c1-9907-9e1107437192",
+              "name": "Telefono",
+              "value": "={{ $('Webhook1').item.json.body.telefono.trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "4ae0444f-4cad-411a-bfc3-2129017717b6",
+              "name": "Vacante",
+              "value": "={{ $('Webhook1').item.json.body.vacante.trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "e06217b0-d60c-4701-8cac-42d3d7aa1f13",
+              "name": "Experiencia",
+              "value": "={{ $('Webhook1').item.json.body.experiencia }}",
+              "type": "string"
+            },
+            {
+              "id": "b8eaee4f-04cb-4dce-8913-cc7445007e8c",
+              "name": "Habilidades",
+              "value": "={{ ($json.habilidades || []).map(h => h.trim().replace(/\\b\\w/g, c => c.toUpperCase())).join(', ') }}",
+              "type": "string"
+            },
+            {
+              "id": "0a6a7b65-5aa7-44b3-8a76-de0014426cb4",
+              "name": "Nivel_academico",
+              "value": "={{ $json.nivel_Educativo }}",
+              "type": "string"
+            },
+            {
+              "id": "a51b0218-c6aa-4748-8880-6811e775468e",
+              "name": "Score_compatibilidad",
+              "value": "={{ $json.score }}",
+              "type": "number"
+            },
+            {
+              "id": "1a4a9722-bb69-4b1f-9754-1b54e86c2d24",
+              "name": "Estado",
+              "value": "=Analizado",
+              "type": "string"
+            },
+            {
+              "id": "ae4dce5e-7508-4845-99d5-ba33991c0eca",
+              "name": "Fecha_Postulacion",
+              "value": "={{ $now.format('yyyy-MM-dd (HH:mm)') }}",
+              "type": "string"
+            },
+            {
+              "id": "bea0140c-dba3-4e4d-bd94-e9820c75e2d5",
+              "name": "Observaciones_IA",
+              "value": "={{ $json.observacion_IA }}",
+              "type": "string"
+            },
+            {
+              "id": "6db541c6-eda0-4629-8afa-72fda5ef657c",
+              "name": "Revision_RRHH",
+              "value": "={{ $json.recomendacion }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1248,
+        64
+      ],
+      "id": "bde938d7-3aef-4015-bc05-9948db2cd622",
+      "name": "preparar los datos para el google sheet"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=eres el reclutador de una empresa encargado de recibir los datos de los postulantes de menor prioridad, osea los que es poco probable que sean contratados,\n\nvas a generar un mensaje para enviarle por gmail y decirle cuales son las habiliudades en las que tiene mas falencias\n\ndale un mensaje respetuoso en forma de critica constructiva por ejemplo\n\nTe sugerimos fortalecer tus proyectos prácticos en ((debilidades) automatizado para futuras vacantes de este rol\n\nestos son los datos\n\nde su cv\n\n {{ $json.perfil }}\n{{ $json.formaciones }}\n{{ $json.experiencias }}\n\ny estas son las habilidades requeridas\n\n\n\n{{ $('Buscar vacantes en Google Sheets').item.json.hab_requeridas }}\n\ny los años de experiencia\n{{ $('Buscar vacantes en Google Sheets').item.json.year_experiencia }}\n\nel mensaje debe estar en español; importante, en español"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        1184,
+        256
+      ],
+      "id": "6490977c-cb06-4989-90e0-8b08616ec3a0",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CX4VpxtHxGqnlYRO",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "=",
+        "subject": "Revision de tu cv",
+        "message": "={{ $json.content.parts[0].text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1536,
+        464
+      ],
+      "id": "6b0ccc42-b72f-4d74-877c-7059578220b2",
+      "name": "Send a message1",
+      "webhookId": "f00a707f-0837-4387-b384-ed74777d710d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ySD9VgbyJJbBKBbQ",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1408,
+        -112
+      ],
+      "id": "72e046b5-d2f3-43a4-b71b-fcb2922f1577",
+      "name": "Send a message2",
+      "webhookId": "0416aeab-bde1-45e3-9c2d-fa18e8fd8618",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ySD9VgbyJJbBKBbQ",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "llegaron los datos?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "llegaron los datos?1": {
+      "main": [
+        [
+          {
+            "node": "es pdf?1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "error no llegaron los datos1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "es pdf?1": {
+      "main": [
+        [
+          {
+            "node": "extraer documento PDF1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "extraer documento PDF1": {
+      "main": [
+        [
+          {
+            "node": "analizando del documento1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "analizando del documento1": {
+      "main": [
+        [
+          {
+            "node": "es una hoja de vida?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "es una hoja de vida?": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Buscar vacantes en Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar vacantes en Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Obtener requisitos de la vacante",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener requisitos de la vacante": {
+      "main": [
+        [
+          {
+            "node": "comparar score1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "comparar score1": {
+      "main": [
+        [
+          {
+            "node": "tomar desicion de clasificacion1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tomar desicion de clasificacion1": {
+      "main": [
+        [
+          {
+            "node": "revision prioritaria1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "revision secundaria1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "revision prioritaria1": {
+      "main": [
+        [
+          {
+            "node": "preparar los datos para el google sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "revision secundaria1": {
+      "main": [
+        [
+          {
+            "node": "preparar los datos para el google sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "preparar los datos para el google sheet": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "f3ea0c82-a857-45ef-9cdc-cd2efc42d5c8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1f1f1324ffb36b513f0fe8ffd8e86774bf3ad01df93c11d54c34d8dd248da0f0"
+  },
+  "nodeGroups": [],
+  "id": "hxyO87FoK18XnzUi",
+  "tags": []
+}
