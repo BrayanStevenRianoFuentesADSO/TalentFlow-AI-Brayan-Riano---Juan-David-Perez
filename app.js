@@ -11,7 +11,7 @@ const vacantesURL =
 // WEBHOOK PARA ENVIAR LAS POSTULACIONES
 // =====================================================
 const postulacionURL =
-    "https://unpiloted-scarce-elastic.ngrok-free.dev/webhook-test/postulacion";
+    "https://domain/webhook-test/postulacion";
 
 // =====================================================
 // CARGAR VACANTES DESDE GOOGLE SHEETS
